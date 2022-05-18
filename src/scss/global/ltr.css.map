@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACM,sBADgB,CAChB,YAAY,CAAC;EACX,aAAa,EAAE,aAAa;EAC5B,WAAW,EAAI,CAAC;EAChB,YAAY,EAAI,IAAI;CAIvB;;AARL,AACM,sBADgB,CAChB,YAAY,AAIV,QAAS,CAAC;EACN,aAAa,EAAE,aAAa;CAC/B",
+    "sources": [
+        "ltr.scss"
+    ],
+    "names": [],
+    "file": "ltr.css"
+}

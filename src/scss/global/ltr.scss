@@ -1,0 +1,20 @@
+.v-application--is-ltr{
+    & .v-list-item {
+        border-radius: 0 10px 10px 0;
+        margin-left  : 0;
+        margin-right  : 10px;
+        &::before {
+            border-radius: 0 10px 10px 0;
+        }
+    }
+    // & .sidebar{
+    //     & .v-list-item {
+    //         &.sub{
+    //             & .v-list-item__action{
+    //                 margin-left: 20px;
+    //                 margin-right: 20px;
+    //             }
+    //         }
+    //     }
+    // }
+}

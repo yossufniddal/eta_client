@@ -1,0 +1,76 @@
+.v-application, .bgdarker {
+  -webkit-transition: background .3s ease-in-out;
+  transition: background .3s ease-in-out;
+}
+
+.theme--dark.v-application {
+  background-color: var(--bg) !important;
+}
+
+tbody tr.v-data-table__mobile-table-row td:first-child {
+  background-color: var(--primary) !important;
+  color: #fff !important;
+}
+
+.v-navigation-drawer, .v-app-bar {
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+}
+
+.v-input__icon--append i {
+  font-size: 15px !important;
+  color: var(--error) !important;
+}
+
+.v-data-table__wrapper table tr td.text-start, .v-data-table__wrapper table tr th.text-start {
+  text-align: center !important;
+}
+
+.submit-btn {
+  width: 100%;
+}
+
+.v-data-table .submit-btn {
+  display: none !important;
+}
+
+.v-data-table__wrapper .v-image {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.v-data-table__wrapper .actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.v-data-table__wrapper .actions:not(:last-child) {
+  margin: 0 5px;
+}
+
+.v-data-table__wrapper .actions i {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+.m-chart:nth-child(1) .mini-chart {
+  background-color: var(--bg-4);
+}
+
+.m-chart:nth-child(2) .mini-chart {
+  background-color: var(--bg-1);
+}
+
+.m-chart:nth-child(3) .mini-chart {
+  background-color: var(--bg-2);
+}
+
+.m-chart:nth-child(4) .mini-chart {
+  background-color: var(--bg-3);
+}
+/*# sourceMappingURL=overrides.css.map */

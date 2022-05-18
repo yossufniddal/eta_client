@@ -1,0 +1,22 @@
+{
+  "hello": "Hello",
+  "powerd_by":"powerd by",
+  "error_getting_data" : "some unknown error happened please refresh the page or call customer support",
+  "cashtray_desc":"This report enables you to view Shifts details of a specific year...",
+  "select_data" : "please provide required fields to view the report",
+  "not_defined" :"not defined",
+  "Serial": "Serial",
+  "DocNo": "DocNo",
+  "DocDate": "DocDate",
+  "Discount": "Discount",
+  "TotalCash": "TotalCash",
+  "TotalTax": "TotalTax",
+  "sidebar" : {
+    "orders":"orders",
+    "orders_un_converted" : "non converted orders"
+  },
+  "table" : {
+    "edit" : "edit",
+    "view" : "view"
+  }
+}

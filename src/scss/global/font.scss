@@ -1,0 +1,17 @@
+@font-face {
+    font-family: "century";
+    src: local("century"),
+         url(../../assets/fonts/Century-Gothic.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "kufi";
+    src: local("kufi"),
+         url(../../assets/fonts/Kufi-Regular.ttf) format("truetype");
+}
+.v-application--is-rtl {
+    font-family: "kufi" ,sans-serif !important;
+}
+.v-application--is-ltr {
+    font-family: "century" ,sans-serif !important;
+}

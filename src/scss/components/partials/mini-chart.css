@@ -1,0 +1,67 @@
+.mini-chart {
+  width: 100%;
+  border-radius: 5px;
+  display: block;
+  padding: 20px 20px 0 20px;
+  overflow: hidden;
+}
+
+.mini-chart.gross_profit {
+  padding: 0;
+}
+
+.mini-chart.gross_profit .wrapper {
+  padding: 20px 20px 0 20px;
+}
+
+.mini-chart.gross_profit .chart canvas {
+  -webkit-transform: translateY(18px) !important;
+          transform: translateY(18px) !important;
+}
+
+.mini-chart .chart {
+  height: 75px;
+}
+
+.mini-chart .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.mini-chart .wrapper span {
+  display: block;
+}
+
+.mini-chart .wrapper .header {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.mini-chart .wrapper .sub-header {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.mini-chart .wrapper .small {
+  font-size: 14px;
+}
+
+.mini-chart .wrapper .actions {
+  text-align: right;
+}
+
+.mini-chart .wrapper .actions .v-icon {
+  font-size: 16px;
+}
+/*# sourceMappingURL=mini-chart.css.map */

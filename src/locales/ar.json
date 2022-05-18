@@ -1,0 +1,32 @@
+{
+  "hello": "مرحبا",
+  "powerd_by":"بواسطة",
+  "Serial": "Serial",
+  "show_totals": "عرض المجموع",
+  "dashboard" : "لوحة التحكم",
+  "search" :"بحث",
+  "orders_un_converted_desc" : "الطلبات الغير محولة",
+  "orders_converted_desc" : "الطلبات  محولة",
+  "totals" : "الاجماليات",
+  "convert" : "تحويل",
+  "sidebar" : {
+    "orders" : "الطلبات",
+    "orders_un_converted" : "الطلبات الغير محولة",
+    "invoices" : "الفواتير",
+    "orders_converted" :"الطلبات  المحولة"
+  },
+  "table" : {
+    "docNo" : "رقم المستند",
+    "docDate" : "التاريخ",
+    "discount" : "الخصم",
+    "totalCash" : "الاجمالي",
+    "serial" : "السيريال",
+    "internlID" : "رقم الفاتورة",
+    "storeCode" : "رقم الفرع",
+    "totalDiscountAmount" : "اجمالي الخصم",
+    "totalAmount" : "الاجمالي",
+    "totalTax" : "اجمالي الضريبة",
+    "stkTr01Serial" : "سيريال الطلب الاصلي",
+    "actions" : "الاجرائات"
+  }
+}

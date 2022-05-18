@@ -1,0 +1,29 @@
+:root {
+  --primary: #1e90ff;
+  --bg: #161717;
+  --bgdarker: #000;
+  --secondary: #424242;
+  --accent: #FF4081;
+  --error: #FF5252;
+  --chat-bg-1: #424242;
+  --chat-bg-2: #7c5d5d;
+  --info: #2196F3;
+  --main-gredient: linear-gradient(45deg, #0088BB, #004674);
+  --success: #4CAF50;
+  --warning: #FB8C00;
+  --text-color: #fff;
+  --bg-1: #28968c;
+  --bg-1-lighter: #28968c;
+  --bg-3: #d44b71;
+  --bg-2: #a03f3e;
+  --bg-3-lighter: #e9a5b8;
+  --bg-4: #268bd2;
+  --transition: all .3s ease-in;
+}
+
+.theme--light {
+  --text-color: #000;
+  --bg: #fff;
+  --bgdarker: #eee;
+}
+/*# sourceMappingURL=variables.css.map */

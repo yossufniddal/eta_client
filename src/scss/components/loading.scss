@@ -1,0 +1,31 @@
+.loading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    // @include flex-column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: var(--bg);
+    & .loader{
+        margin-bottom: 20px;
+    }
+
+    & .powerd{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & span {
+            margin: 10px;
+        }
+    }
+
+    & img{
+        width: 200px;
+
+    }
+}
