@@ -5,14 +5,10 @@ export default [
     children: [
       {
         icon: "mdi-account-outline",
-        title: "sidebar.orders_converted",
-        to: `/orders/converted`,
+        title: "sidebar.orders",
+        to: `/orders`,
       },
-      {
-        icon: "mdi-account-outline",
-        title: "sidebar.orders_un_converted",
-        to: `/orders/unconverted`,
-      },
+      
      
     ]
   },

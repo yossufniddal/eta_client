@@ -17,9 +17,9 @@ const routes: Array<RouteConfig> = [
       },
       // orders rotues
       {
-        path: "orders/converted",
-        name: "orders/converted",
-        component: () => import('@/views/orders/converted.vue'),
+        path: "orders",
+        name: "orders",
+        component: () => import('@/views/orders/index.vue'),
       },
       {
         path: "orders/unconverted",

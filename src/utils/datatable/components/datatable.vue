@@ -7,12 +7,24 @@
           <v-col cols="12">
             <v-card>
               <v-card-text>
-                <a @click.prevent="resp = {}">clear</a>
+                
                 <h2 class="primary-text mb-4 text-center">{{$t(table.title)}}</h2>
                 <p class="text-center">{{$t(table.description)}}</p>
               </v-card-text>
             </v-card>
           </v-col>
+            <v-col cols="12">
+              <v-card>
+                <v-card-text>
+                <v-container>
+                  <app-form :form="table.filters" @change="filter" v-if="table.hasFilters"/>
+                  <div class="pa-4">
+                  <v-btn v-if="!table.error && table.hasFooter && (!table.hasFilters || table.filters.valid)" color="primary" class="w-full my-4" @click.prevent="showTotals">{{$t('show_totals')}}</v-btn>
+                </div>
+                </v-container>
+                </v-card-text>
+              </v-card>
+            </v-col>
           <v-col cols="12">
           <v-data-table
             :headers="table.headers"
@@ -25,10 +37,8 @@
             height="400px"
           >
             <template v-slot:top >
-               <app-form :form="table.filters" @change="filter" v-if="table.hasFilters"/>
-               <div class="pa-4">
-                <v-btn v-if="!table.error && table.hasFooter && (!table.hasFilters || table.filters.valid)" color="primary" class="w-full my-4" @click.prevent="showTotals">{{$t('show_totals')}}</v-btn>
-               </div>
+              
+             
                <div class="datatable-header">
                  <v-text-field
                   v-model="table.search"
@@ -81,17 +91,29 @@
               </tr>
             </template>
             
-            <template v-slot:[`item`]="{ item }">
+            <!-- <template v-slot:[`item`]="{ item }">
                 <slot
                   :name="`item`"
                   :item="item"
                 />
-            </template>
+            </template> -->
             <template v-slot:[`item.image`]="{ item }">
               <v-img :src="item.image"></v-img>
             </template>
             <template v-slot:[`item.actions`]="{ item }" >
               <slot name="actions" :item="item"></slot>
+             <!-- <v-btn
+              @click.prevent="convert(item.serial)"
+              color="green"
+              class="mr-4"
+            >
+            {{$t('convert')}}
+            <v-icon
+              small
+            >
+              mdi-keyboard-return
+            </v-icon>
+          </v-btn> -->
             </template>
           </v-data-table>
           </v-col>
@@ -145,7 +167,6 @@ import AppForm from '@/utils/form/components/Form.vue'
 import Vue from "vue";
 import { ConvertToEInvoice } from "@/repositories/order";
 import { PostEtaInvoice } from "@/repositories/invoice";
-import  h  from 'vue'
 export default Vue.extend({
   props: {
     table: Datatable,

@@ -1,12 +1,7 @@
 <template>
 <div>
-  {{resp}}
-  <a @click.prevent="resp = {}">clear</a>
     <datatable :table="data">
-      <!-- <template v-slot:[`item`]="{ item }">
-        {{item}}
-      </template> -->
-        <template v-slot:[`actions`]="{ item }" >
+       <template v-slot:[`actions`]="{ item }" >
           <v-btn
               @click.prevent="convert(item.serial)"
               color="green"
@@ -20,34 +15,30 @@
             </v-icon>
           </v-btn>
         </template>
-      
-
-
     </datatable>
 </div>
 </template>
 <script lang="ts">
 import Vue from "vue";
-import data from "@/datatables/invoices";
+import data from "@/datatables/orders";
 import datatable from "@/utils/datatable/components/datatable.vue";
-import { PostEtaInvoice } from "@/repositories/invoice";
+import { ConvertToEInvoice } from "@/repositories/order";
 export default Vue.extend({
   name: "consultutns-list",
   components:{
     datatable
   },
-  data(){
-    return {
-      resp : {},
-      data
-    }
-  },
   methods:{
     convert(serial:number){
-      PostEtaInvoice(serial).then((res) => {
-        this.resp = res
+      ConvertToEInvoice(serial).then((res) => {
+          this.data.removeRow(serial)
       })
     },
+  },
+  data(){
+    return {
+        data
+    }
   },
 });
 </script>

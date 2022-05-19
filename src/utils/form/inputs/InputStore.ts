@@ -1,121 +1,71 @@
-
-
-// Userid     uint64
-// CategoryId uint64
-// CityId     uint64
-// Img        string
-// Imgs       string
-// Logo       string
-// Title      string
-// Status     string
-// Fund       float64
-// Breif      string
-// Location   string
-// Phone      string
-// File       string
-// Email      string
-// Website    string
-// Instagram  string
-// Twitter    string
+import  i18n  from '@/i18n';
 import { InputInterface } from '@/utils/form/interface';
 import { TextInputInterface , SwitchInputInterface , DateInputInterface , SelectInputInterface } from '../interface';
 import {name , required , email, num} from "@/utils/validations/validations" 
 
 
 
-// projects
-export const breifInput:TextInputInterface =  {
-  name:"Breif",
-  icon: "",
-  rules:[],
-  label : "Breif",
-  cols : 6,
-  type : 'text',
-  value:""
-}
+export const transSerialInput:SelectInputInterface =  {
+  name:"transSerial",
 
-export const imgInput:TextInputInterface =  {
-  name:"Img",
-  icon: "",
-  rules:[],
-  label : "Img",
-  cols : 6,
-  type : 'file',
-  value:""
-}
-
-export const fundInput:TextInputInterface =  {
-  name:"Fund",
-  icon: "",
-  rules:[
-      (value:string) => num(value),
-  ],
-  label : "Fund",
-  cols : 6,
-  type : 'text',
-  value:""
-}
-
-export const titleInput:TextInputInterface =  {
-  name:"Title",
-  icon: "",
-  rules:[
-      (value:string) => required(value),
-  ],
-  label : "title",
-  cols : 6,
-  type : 'text',
-  value:""
-}
-
-export const websiteInput:TextInputInterface =  {
-  name:"Website",
-  icon: "",
-  rules:[
-      (value:string) => required(value) ,
-  ],
-  label : "Website",
-  cols : 6,
-  type : 'text',
-  value:""
-}
-
-export const instagramInput:TextInputInterface =  {
-  name:"Instagram",
-  icon: "",
-  rules:[
-      (value:string) => required(value) ,
-  ],
-  label : "Instagram",
-  cols : 6,
-  type : 'text',
-  value:""
-}
-
-export const twitterInput:TextInputInterface =  {
-  name:"Twitter",
-  icon: "",
-  rules:[
-      (value:string) => required(value) ,
-  ],
-  label : "Twitter",
-  cols : 6,
-  type : 'text',
-  value:""
-}
-
-
-export const categoryInput:SelectInputInterface =  {
-  name:"CategoryId",
-  cache : false,
-  text : 'Name',
-  initialFetch:true,
+  text : 'key',
+  cache:true,
+  initialFetch:false,
   clearable:false,
-  value : 'Id',
-  type : 'combo',
-  url:'cats/project',
+  value : 'value',
+  type : 'select',
+  items :[
+    {
+      key : i18n.t("sales_order"),
+      value : 25
+    },
+    {
+      key :i18n.t("pos_order"),
+      value : 30
+    }
+  ],
+  icon : 'mdi-format-list-numbered',
+  label : 'order_type'
+}
+
+
+export const statusInput:SelectInputInterface =  {
+  name:"status",
+  text : 'key',
+  cache:true,
+  initialFetch:false,
+  clearable:true,
+  value : 'value',
+  type : 'select',
+  items :[
+    {
+      key : i18n.t("all"),
+      value : -1
+    },
+    {
+      key :i18n.t("posted"),
+      value : 1
+    },
+    {
+      key :i18n.t("not_posted"),
+      value : 0
+    }
+  ],
+  icon : 'mdi-lock-outline',
+  label : 'status'
+}
+
+export const storeInput:SelectInputInterface =  {
+  name:"store",
+  cache : false,
+  text : 'store_name',
+  initialFetch:true,
+  clearable:true,
+  value : 'store_code',
+  type : 'select',
+  url:'stores',
   icon : 'mdi-store-settings-outline',
-  label : 'category'
+  label : 'store'
 }
 
 export const searchInput:TextInputInterface =  {
@@ -127,19 +77,6 @@ export const searchInput:TextInputInterface =  {
     value : '',
 }
 
-
-export const roleInput:SelectInputInterface =  {
-    name:"Role_id",
-    cache : false,
-    text : 'Name',
-    initialFetch:true,
-    clearable:true,
-    value : 'Id',
-    type : 'select',
-    url:'roles',
-    icon : 'mdi-store-settings-outline',
-    label : 'role'
-}
 export const featuredInput:SwitchInputInterface =  {
     name:"Featured",
     label : "featured",
@@ -147,84 +84,6 @@ export const featuredInput:SwitchInputInterface =  {
     type : 'switch',
     val : false
 }
-
-
-export const postedInput:SwitchInputInterface =  {
-  name:"posted",
-  label : "posted",
-  cols : 6,
-  type : 'switch',
-  val : false
-}
-
-export const nameArInput:TextInputInterface =  {
-    name:"Name_ar",
-    icon: "",
-    rules:[
-        (value:string) => required(value) ,
-      (value:string) => name(value) ,
-    ],
-    required:true,
-    label : "Name_ar",
-    cols : 6,
-    type : 'text',
-    value:""
-}
-export const nameInput:TextInputInterface =  {
-    name:"Name",
-    icon: "",
-    rules:[
-        (value:string) => required(value) ,
-      (value:string) => name(value) ,
-    ],
-    required:true,
-    label : "Name",
-    cols : 6,
-    type : 'text',
-    value:""
-}
-export const emailInput:TextInputInterface =  {
-    name:"Email",
-    icon: "",
-    rules:[
-        (value:string) => required(value) ,
-      (value:string) => email(value) ,
-    ],
-    label : "Email",
-    cols : 6,
-    type : 'text',
-    value:""
-}
-
-
-
-export const passwordInput:TextInputInterface =  {
-    name:"Password",
-    icon: "",
-    rules:[
-        (value:string) => required(value) ,
-      (value:string) => name(value) ,
-    ],
-    label : "Password",
-    cols : 6,
-    type : 'password',
-    value:""
-}
-export const phoneInput:TextInputInterface =  {
-    name:"Phone",
-    icon: "",
-    rules:[
-        (value:string) => required(value) ,
-    ],
-    label : "Phone",
-    cols : 6,
-    type : 'text',
-    value:""
-}
-
-
-
-
 
 
 

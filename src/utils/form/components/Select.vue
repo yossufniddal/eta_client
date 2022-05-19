@@ -24,7 +24,7 @@ const Http = Api.getInstance();
 export default Vue.extend({
   data(){
     return{
-      loading:true,
+      loading:false,
     }
   },  
   props: {
@@ -50,7 +50,11 @@ export default Vue.extend({
       }
   },
   created(){
-    if (this.input.initialFetch) this.getData()
+    // this.loading = false
+    if (this.input.initialFetch){
+      // this.getData()
+    } else {
+    }
   }
 });
 </script>
