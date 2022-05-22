@@ -24,8 +24,6 @@
     <v-date-picker
       locale="en-in"
       color="primary"
-      
-      
       :type="input.limit"
       @change="change"
       no-title
@@ -52,7 +50,7 @@ export default Vue.extend({
         this.active = false
         this.model = val
         this.input.val = val
-      this.$emit("change", val);
+        this.$emit("change", val);
     },
   },
 });

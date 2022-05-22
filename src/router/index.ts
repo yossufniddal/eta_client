@@ -14,17 +14,20 @@ const routes: Array<RouteConfig> = [
         path: "/",
         name: "Home",
         component: Home,
+        meta: { transition: 'slide-left' },
       },
       // orders rotues
       {
         path: "orders",
         name: "orders",
         component: () => import('@/views/orders/index.vue'),
+        meta: { transition: 'slide-right' },
+
       },
       {
-        path: "orders/unconverted",
-        name: "orders/unconverted",
-        component: () => import('@/views/orders/unconverted.vue'),
+        path: "orders/pos",
+        name: "orders/pos",
+        component: () => import('@/views/orders/pos.vue'),
       },
 
       // invoices rotues

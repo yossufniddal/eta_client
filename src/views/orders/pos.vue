@@ -20,7 +20,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import data from "@/datatables/orders/converted";
+import data from "@/datatables/orders/pos";
 import datatable from "@/utils/datatable/components/datatable.vue";
 import { ConvertToEInvoice } from "@/repositories/order";
 export default Vue.extend({
@@ -30,10 +30,11 @@ export default Vue.extend({
   },
   methods:{
     convert(serial:number){
-      ConvertToEInvoice(serial).then((res) => {
-          this.data.removeRow(serial)
-        // this.resp = res
-      })
+      console.log(serial)
+      // ConvertToEInvoice(serial).then((res) => {
+      //     this.data.removeRow(serial)
+      //   // this.resp = res
+      // })
     },
   },
   data(){

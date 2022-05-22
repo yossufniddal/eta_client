@@ -20,7 +20,7 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import data from "@/datatables/orders";
+import data from "@/datatables/orders/sales";
 import datatable from "@/utils/datatable/components/datatable.vue";
 import { ConvertToEInvoice } from "@/repositories/order";
 export default Vue.extend({

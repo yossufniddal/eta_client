@@ -16,11 +16,14 @@
   "order_type" : "نوع الطلب",
   "store" : "الفرع",
   "not_posted":"غير محول",
+  "from_date": "بداية من",
+  "to_date": "انتهاء في",
   "convert" : "تحويل",
   "sidebar" : {
     "orders" : "الطلبات",
     "orders_un_converted" : "الطلبات الغير محولة",
     "invoices" : "الفواتير",
+    "pos_orders" : "طلبات بيع مباشر",
     "orders_converted" :"الطلبات  المحولة"
   },
   "table" : {

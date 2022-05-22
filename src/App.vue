@@ -36,7 +36,6 @@ export default Vue.extend({
 
       setTimeout(() => {
         this.$store.commit("ui/appLoaded");
-        console.log("asdasdasd")
       }, 2000);
     },
   },

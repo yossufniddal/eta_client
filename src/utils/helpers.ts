@@ -1,5 +1,7 @@
 import colors from './colors'
 
+
+
 export const switchLanguage = (locale: string, ctx: any) => {
   localStorage.setItem("locale", locale);
   ctx.$vuetify.rtl = locale === "ar";

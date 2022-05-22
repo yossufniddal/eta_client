@@ -15,12 +15,10 @@ export const Login = (payload:loginRequest) :Promise<loginResponse> => {
 
 export const Validate = () => {
     return new Promise((resolve, reject) => {
-        Http.post('validate')
+        Http.get('validate')
         .then((d:any) => {
-            console.log('success')
             resolve(d)
         }).catch((e:any) => {
-            console.log('failed')
             reject(e)
         })
     })
