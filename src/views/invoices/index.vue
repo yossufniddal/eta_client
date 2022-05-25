@@ -1,7 +1,7 @@
 <template>
 <div>
-  {{resp}}
-  <a @click.prevent="resp = {}">clear</a>
+  <!-- {{resp}}
+  <a @click.prevent="resp = {}">clear</a> -->
     <datatable :table="data">
       <!-- <template v-slot:[`item`]="{ item }">
         {{item}}

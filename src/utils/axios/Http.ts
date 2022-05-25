@@ -51,7 +51,7 @@ export default abstract class HttpClient {
     // if(error.response.status == 403){
     //   console.log('unauth')
     // }
-    Promise.reject(error);
+    return Promise.reject(error);
   }
 
 }

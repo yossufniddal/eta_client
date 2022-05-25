@@ -1,3 +1,4 @@
+import { FormInterface } from './../../../utils/form/interface';
 import { convertToRequred } from '@/utils/form/inputs/InputStore';
 import Form from '@/utils/form/Form';
 import {transSerialInput,  statusInput , storeInput , fromDate , toDate} from '@/utils/form/inputs/InputStore'
@@ -12,6 +13,9 @@ const inputs: Input[] = [
   new Input(toDate),
 ]
 
+const params :FormInterface = {
+  inputs
+}
 
-const invoiceFilter = new Form(inputs, ()=>{})
+const invoiceFilter = new Form(params)
 export default invoiceFilter

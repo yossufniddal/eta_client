@@ -2,7 +2,7 @@ import  i18n  from '@/i18n';
 import { InputInterface } from '@/utils/form/interface';
 import { TextInputInterface , SwitchInputInterface , DateInputInterface , SelectInputInterface } from '../interface';
 import {name , required , email, num} from "@/utils/validations/validations" 
-import {currentDate} from '@/utils/helpers.ts'
+import {currentDate} from '@/utils/helpers'
 
 
 export const transSerialInput:SelectInputInterface =  {
@@ -33,6 +33,7 @@ export const statusInput:SelectInputInterface =  {
   text : 'key',
   cache:true,
   initialFetch:false,
+  cols:6,
   clearable:true,
   value : 'value',
   type : 'select',
@@ -48,7 +49,7 @@ export const statusInput:SelectInputInterface =  {
   ],
   icon : 'mdi-lock-outline',
   label : 'status'
-}
+}            
 
 export const storeInput:SelectInputInterface =  {
   name:"store",
@@ -71,6 +72,25 @@ export const searchInput:TextInputInterface =  {
     cols : 6,
     value : '',
 }
+
+export const usernameInput:TextInputInterface =  {
+  name : 'username',
+  label : 'username',
+  type: 'text',
+  icon : 'mdi-message-outline',
+  cols : 12,
+  value : '',
+}
+
+export const passwordInput:TextInputInterface =  {
+  name : 'password',
+  label : 'password',
+  type: 'password',
+  icon : 'mdi-lock-outline',
+  cols : 12,
+  value : '',
+}
+
 
 export const featuredInput:SwitchInputInterface =  {
     name:"Featured",

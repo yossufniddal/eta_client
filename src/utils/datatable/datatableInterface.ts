@@ -3,9 +3,10 @@ import Form from "../form/Form";
 export interface Header {
     value:string
     text:string
-    isPrice:boolean
-    isTotal:boolean
-    total:number
+    isPrice?:boolean
+    isImg?:boolean
+    isTotal?:boolean
+    total?:number
 }
 export interface Totals {
     key:string

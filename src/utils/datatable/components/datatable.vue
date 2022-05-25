@@ -1,31 +1,31 @@
 
 <template>
   <div>
-   
-      <v-container>
-        <v-row>
-          <v-col cols="12">
-            <v-card>
-              <v-card-text>
-                
-                <h2 class="primary-text mb-4 text-center">{{$t(table.title)}}</h2>
-                <p class="text-center">{{$t(table.description)}}</p>
-              </v-card-text>
-            </v-card>
-          </v-col>
-            <v-col cols="12">
-              <v-card>
-                <v-card-text>
-                <v-container>
-                  <app-form :form="table.filters" @change="filter" v-if="table.hasFilters"/>
-                  <div class="pa-4">
-                  <v-btn v-if="!table.error && table.hasFooter && (!table.hasFilters || table.filters.valid)" color="primary" class="w-full my-4" @click.prevent="showTotals">{{$t('show_totals')}}</v-btn>
-                </div>
-                </v-container>
-                </v-card-text>
-              </v-card>
-            </v-col>
-          <v-col cols="12">
+
+    <v-container>
+      <v-row>
+        <v-col cols="12">
+          <v-card>
+            <v-card-text>
+
+              <h2 class="primary-text mb-4 text-center">{{$t(table.title)}}</h2>
+              <p class="text-center">{{$t(table.description)}}</p>
+            </v-card-text>
+          </v-card>
+        </v-col>
+        <v-col cols="12">
+          <app-form
+            :form="table.filters"
+            @change="filter"
+            v-if="table.hasFilters"
+          >
+            <slot name="title">
+              <h2>{{$t('select_data')}}</h2>
+            </slot>
+          </app-form>
+
+        </v-col>
+        <v-col cols="12">
           <v-data-table
             :headers="table.headers"
             :items="table.data"
@@ -36,11 +36,10 @@
             fixed-header
             height="400px"
           >
-            <template v-slot:top >
-              
-             
-               <div class="datatable-header">
-                 <v-text-field
+            <template v-slot:top>
+
+              <div class="datatable-header">
+                <v-text-field
                   v-model="table.search"
                   prepend-icon="mdi-magnify"
                   :label="$t('search')"
@@ -49,31 +48,38 @@
                   v-if="table.searchable"
                 ></v-text-field>
                 <v-btn
-                    @click.prevent="$router.push({name:`${$route.name}-create`})"
-                    color="primary"
-                    class="mr-4"
-                    v-if="table.hasCreate"
-                  >
-                  <v-icon
-                    small
-                  >
+                  @click.prevent="$router.push({name:`${$route.name}-create`})"
+                  color="primary"
+                  class="mr-4"
+                  v-if="table.hasCreate"
+                >
+                  <v-icon small>
                     mdi-plus
                   </v-icon>
                 </v-btn>
-               </div>
-              
+              </div>
+
             </template>
-            <template v-slot:body v-if="table.error">
+            <template
+              v-slot:body
+              v-if="table.error"
+            >
               <tr class="text-center py-4">
                 <td :colspan="table.headers.length">
                   {{ $t("error_getting_data") }}
                 </td>
               </tr>
             </template>
-             <template v-slot:no-data  v-if="table.hasFilters && !table.filters.valid">
-                  {{ $t("select_data") }}
+            <template
+              v-slot:no-data
+              v-if="table.hasFilters && !table.filters.valid"
+            >
+              {{ $t("select_data") }}
             </template>
-            <template slot="body.append" v-if="table.hasFooter && table.data.length > 0">
+            <template
+              slot="body.append"
+              v-if="table.hasFooter && table.data.length > 0"
+            >
               <tr class="text-center md-hidden black--text bg-gredient">
                 <th
                   class="text-center text-color"
@@ -90,19 +96,29 @@
                 </th>
               </tr>
             </template>
-            
+
             <!-- <template v-slot:[`item`]="{ item }">
                 <slot
                   :name="`item`"
                   :item="item"
                 />
             </template> -->
+             <template v-slot:[`item`]="{ item }">
+              <!-- <v-img :src="item.image"></v-img> -->
+              <td v-for="(head , index) in table.headers" :key="index">
+                <!-- <v-img v-if="head.isImage" :src="item.image"></v-img> -->
+                <slot :name="`col.${head}`" :item="item[head]"></slot>
+              </td>
+            </template>
             <template v-slot:[`item.image`]="{ item }">
               <v-img :src="item.image"></v-img>
             </template>
-            <template v-slot:[`item.actions`]="{ item }" >
-              <slot name="actions" :item="item"></slot>
-             <!-- <v-btn
+            <template v-slot:[`item.actions`]="{ item }">
+              <slot
+                name="actions"
+                :item="item"
+              ></slot>
+              <!-- <v-btn
               @click.prevent="convert(item.serial)"
               color="green"
               class="mr-4"
@@ -116,10 +132,10 @@
           </v-btn> -->
             </template>
           </v-data-table>
-          </v-col>
-        </v-row>
-      </v-container>
-      <v-dialog
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-dialog
       v-model="dialog"
       width="400"
     >
@@ -155,7 +171,7 @@
         </v-card-text>
       </v-card>
     </v-dialog>
-    
+
   </div>
 </template>
 
@@ -163,7 +179,7 @@
 import Datatable from "@/utils/datatable/datatable";
 import { Header } from "@/utils/datatable/datatableInterface";
 import { currency } from "@/utils/helpers";
-import AppForm from '@/utils/form/components/Form.vue'
+import AppForm from "@/utils/form/components/Form.vue";
 import Vue from "vue";
 import { ConvertToEInvoice } from "@/repositories/order";
 import { PostEtaInvoice } from "@/repositories/invoice";
@@ -173,51 +189,51 @@ export default Vue.extend({
   },
   // render(){
   //   return new h('div' , 'test')
-  // },  
+  // },
   data() {
     return {
       approvedServiceId: 0,
-      msgModal : false,
-      dialog : false,
-      resp:{},
-      msg : ""
-    }
+      msgModal: false,
+      dialog: false,
+      resp: {},
+      msg: "",
+    };
   },
-  components:{
-    AppForm
+  components: {
+    AppForm,
   },
-  computed:{
-    totalsHeaders(){
-      return this.table.headers.filter((header:Header) => {
-        return header.isTotal ? header : ''
-      })
+  computed: {
+    totalsHeaders() {
+      return this.table.headers.filter((header: Header) => {
+        return header.isTotal ? header : "";
+      });
     },
   },
   methods: {
-    convert(serial:number){
-      if (this.$route.path.split('/')[1] == 'orders'){
+    convert(serial: number) {
+      if (this.$route.path.split("/")[1] == "orders") {
         ConvertToEInvoice(serial).then(() => {
-          this.table.removeRow(serial)
-        })
+          this.table.removeRow(serial);
+        });
       } else {
         PostEtaInvoice(serial).then((res) => {
           // this.table.removeRow(serial)
-          this.resp = res
-        })
+          this.resp = res;
+        });
       }
     },
     currency: (x: number) => currency(x),
-    filter(val:any){
+    filter(val: any) {
       // reset headers totals to avoid sum bug
       // if we dont do this the class will add the totals to thee preevios data totals
-      this.table.headers.forEach((header:Header) => {
-        header.total = 0
-      })
-        this.table.getData()
+      this.table.headers.forEach((header: Header) => {
+        header.total = 0;
+      });
+      this.table.getData();
     },
-    showTotals(){
-      this.dialog=true
-    }
+    showTotals() {
+      this.dialog = true;
+    },
   },
 });
 </script>

@@ -36,6 +36,7 @@
 }
 .app-btn{
     width: 100%;
+    background:var(--main-gredient);
 }
 .app-error{
     background-color: var(--error);
@@ -55,4 +56,13 @@
 }
 .p-0{
     padding: 0 !important;
+}
+
+.h-full{
+    height: 100vh;
+} 
+.full-flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

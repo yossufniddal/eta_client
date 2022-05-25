@@ -37,7 +37,7 @@
 }
 
 .sidebar .logo a img {
-  width: 150px;
+  width: 200px;
   -webkit-transition: var(--primary-transition);
   transition: var(--primary-transition);
   margin-right: 20px;

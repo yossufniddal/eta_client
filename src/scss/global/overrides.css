@@ -47,6 +47,10 @@ tbody tr.v-data-table__mobile-table-row td:first-child {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10px 0;
 }
 
 .v-data-table__wrapper .actions:not(:last-child) {

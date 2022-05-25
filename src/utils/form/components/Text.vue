@@ -2,6 +2,7 @@
     <v-text-field
       :label="$t(input.label)"
       :prepend-icon="input.icon"
+      :type="type"
       :append-icon="input.required ? 'mdi-asterisk' : ''"
       :rules="input.rules ? input.rules : []"
       @input="change"
@@ -15,6 +16,9 @@ import Vue from "vue";
 export default Vue.extend({
   props: {
     input: Object,
+    type:{
+      default: "select"
+    }
   },
   methods:{
     change(val:any){

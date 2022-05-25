@@ -44,6 +44,7 @@ export type SelectInputInterface = {
     type:string
     initialFetch:boolean
     initial?:any,
+    cols?:number
     items?: Object[]
     icon: string
     label: string
@@ -57,7 +58,8 @@ export type InputInterface = SelectInputInterface | TextInputInterface | DateInp
 
 export interface FormInterface {
     inputs: Input[]
-    loading: boolean
-    valid:boolean 
-    submit: Function
+    loading?: boolean
+    valid?:boolean 
+    submit?: (form: any) => Promise<any>
+    callBack?: (response: any) => any
 }

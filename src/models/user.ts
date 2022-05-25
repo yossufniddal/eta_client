@@ -14,8 +14,8 @@ export type loginResponse  = {
 
 
 export type loginRequest  = {
-    Username:number,
-    Password:string
+    username:number,
+    password:string
 }
 
 

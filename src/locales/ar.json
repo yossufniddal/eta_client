@@ -12,6 +12,7 @@
   "sales_order" : "مبيعات جملة",
   "pos_order" : "مبيعات كاشير",
   "status" : "الحالة",
+  "orders_desc" : "الطلبات",
   "all" : "الكل",
   "order_type" : "نوع الطلب",
   "store" : "الفرع",
@@ -19,6 +20,7 @@
   "from_date": "بداية من",
   "to_date": "انتهاء في",
   "convert" : "تحويل",
+  "select_data" : "من فضلك املأ الحقول المطلوبة لعرض البيانات.",
   "sidebar" : {
     "orders" : "الطلبات",
     "orders_un_converted" : "الطلبات الغير محولة",
