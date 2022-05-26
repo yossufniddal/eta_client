@@ -5,6 +5,7 @@
       :type="type"
       :append-icon="input.required ? 'mdi-asterisk' : ''"
       :rules="input.rules ? input.rules : []"
+      outlined
       @input="change"
     ></v-text-field>
 </template>

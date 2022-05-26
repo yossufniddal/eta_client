@@ -1,0 +1,101 @@
+
+.login_wrapper {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    height: 100vh;
+    grid-template-areas: "login img";
+  }
+  
+  .left_side {
+    background-image: url("../../assets/img/login-bg.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+  @media (max-width: 1400px) {
+    .login_wrapper {
+      grid-template-columns: 40% 60%;
+    }
+  }
+  @media (max-width: 1200px) {
+    .login_wrapper {
+      grid-template-columns: 50% 50%;
+    }
+  }
+  @media (max-width: 800px) {
+    .login_wrapper {
+      grid-template-columns: 60% 40%;
+    }
+  
+    .left_side {
+      background-position: -165px;
+    }
+  }
+  
+  @media (max-width: 690px) {
+    .login_wrapper {
+      grid-template-columns: 100%;
+      grid-template-rows: 35% 65%;
+      grid-template-areas: "img" "login";
+    }
+  
+    .left_side {
+      background-position: center;
+    }
+    .right_side {
+      max-width: 450px;
+      padding: 20px;
+      border-radius: 20px;
+      margin: auto;
+      transform: translateY(-100px);
+      box-shadow: var(--shadow);
+      background-color: var(--bg);
+    }
+  }
+  @media (max-width: 400px) {
+    .right_side {
+      transform: translateY(-120px);
+      max-width: 300px;
+    }
+    .header h2{
+      font-size: 18px;
+    }
+    .header p{
+      font-size: 12px;
+    }
+    .v-text-field__details{
+      margin: 0;
+    }
+    .app-btn{
+      margin: 0 !important;
+    }
+    
+  }
+  .right_side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    grid-area: login;
+  }
+  .right_side .app-btn {
+    margin-bottom: 30px;
+  }
+  .left_side {
+    grid-area: img;
+  }
+  .right_side div {
+    max-width: 400px;
+  }
+  .mdi.mdi-asterisk {
+    display: none !important;
+  }
+  .footer {
+    /* position: absolute !important; */
+    bottom: 0;
+    height: 100px;
+  }
+  .footer span {
+    font-size: 10px;
+  }
+  

@@ -31,10 +31,11 @@
             display: flex;
             align-items: center;
             text-decoration: none;
-            & img {
+            & svg {
                 width: 200px;
                 transition: var(--primary-transition);
                 margin-right: 20px;
+                fill: var(--text-color);
             }
             & span{
                 font-size: 28px;

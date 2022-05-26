@@ -17,6 +17,7 @@ export type SwitchInputInterface = {
     label: string
     cols: number
     required?:boolean
+    rules?:Array<Function>,
     initial?:any,
     type:string
     val?:boolean
@@ -25,6 +26,7 @@ export type DateInputInterface = {
     name: string
     label : string
     min : string
+    rules?:Array<Function>,
     max : string
     required?:boolean
     val?:any
@@ -41,6 +43,7 @@ export type SelectInputInterface = {
     text: string
     val?:any
     value: string
+    rules?:Array<Function>,
     type:string
     initialFetch:boolean
     initial?:any,

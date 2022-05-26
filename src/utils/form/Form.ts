@@ -79,6 +79,7 @@ export default class Form implements FormInterface {
 
     private _reset() {
         // this._initInputs()
+        this.error = ""
         this.loading = false
     }
 }

@@ -36,11 +36,12 @@
   text-decoration: none;
 }
 
-.sidebar .logo a img {
+.sidebar .logo a svg {
   width: 200px;
   -webkit-transition: var(--primary-transition);
   transition: var(--primary-transition);
   margin-right: 20px;
+  fill: var(--text-color);
 }
 
 .sidebar .logo a span {

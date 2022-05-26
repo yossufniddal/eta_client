@@ -124,5 +124,6 @@ export const toDate:DateInputInterface =  {
 export const convertToRequred = (input:InputInterface) => {
     const req = {...input}
     req.required = true
+    typeof req.rules == 'undefined' ? req.rules = [required] : req.rules.push(required)
     return req
 }

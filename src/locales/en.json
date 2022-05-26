@@ -10,6 +10,12 @@
   "DocDate": "DocDate",
   "Discount": "Discount",
   "TotalCash": "TotalCash",
+  "welcome": "Welcom to",
+  "username" : "username",
+  "password" : "password",
+  "incorrect_uname" : "no users with this code found",
+  "wrong_password" : "this password is incorrect",
+  "welcome_paragraph": "Magni voluptas omnis eum repudiandae nobis molestiae voluptates minima adipisci, quam aliquam consequuntur nisi non doloribus quia sit eligendi,",
   "TotalTax": "TotalTax",
   "sidebar" : {
     "orders":"orders",

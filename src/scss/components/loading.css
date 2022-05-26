@@ -18,6 +18,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: var(--bg);
+  z-index: 13;
 }
 
 .loading .loader {
@@ -40,7 +41,8 @@
   margin: 10px;
 }
 
-.loading img {
+.loading svg {
   width: 200px;
+  fill: var(--primary);
 }
 /*# sourceMappingURL=loading.css.map */

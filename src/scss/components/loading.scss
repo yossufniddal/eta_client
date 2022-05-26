@@ -10,10 +10,10 @@
     align-items: center;
     flex-direction: column;
     background-color: var(--bg);
+    z-index: 13;
     & .loader{
         margin-bottom: 20px;
     }
-
     & .powerd{
         display: flex;
         justify-content: center;
@@ -23,9 +23,9 @@
             margin: 10px;
         }
     }
-
-    & img{
+    & svg{
         width: 200px;
+        fill: var(--primary)
 
     }
 }

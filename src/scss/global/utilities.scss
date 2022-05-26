@@ -66,3 +66,15 @@
     justify-content: center;
     align-items: center;
 }
+.form-title{
+    & .header{
+        display: flex;
+        margin-bottom: 20px;
+        & svg{
+            font-size: 30px;
+            fill: var(--primary);
+            max-width: 130px;
+            margin: 5px 10px 0 10px;
+        }
+    }
+}
