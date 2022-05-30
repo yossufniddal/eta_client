@@ -14,6 +14,7 @@
     :rules="input.rules ? input.rules : []"
     :label="$t(input.label)"
     single-line
+    outlined
   ></v-select>
 </template>
 

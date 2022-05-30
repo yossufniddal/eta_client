@@ -29,7 +29,6 @@ export default class Form implements FormInterface {
         }
         for (let index = 0; index < this.inputs.length; index++) {
             const input = this.inputs[index];
-            console.log(input)
             if (input.field.required == true && (input.field.val == null || typeof input.field.val == 'undefined')) {
                 return false
             }

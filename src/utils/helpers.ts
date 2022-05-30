@@ -10,8 +10,9 @@ export const switchLanguage = (locale: string, ctx: any) => {
 };
 
 export const numberWithCommas = (x: number) => {
-    const xFixed = x.toFixed(3)
-    return xFixed.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const xFixed = typeof x.toFixed != 'undefined' ? x.toFixed(3) : 6.640.toFixed(3)
+  const val = xFixed.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return val
 };
 
 export const generateColors = (n:number) => {
@@ -21,7 +22,8 @@ export const generateColors = (n:number) => {
 }
 
 export const currency = (x:number):string => {
-  return `${numberWithCommas(x)} EGP`
+  const val = `${numberWithCommas(x)} EGP`
+  return val
 }
 
 export const clearNullValues = (obj:Object) => {
@@ -106,3 +108,40 @@ export const getColor = (index:number) => {
 // export const createChart()
 
 export const required = (v:any) => !!v || 'required'
+
+
+
+export const addParamsToLocation = (params:any , path:string) => {
+  history.pushState(
+      {},
+      '',
+      path +
+      '?' +
+      Object.keys(params)
+          .map(key => {
+          return (
+              encodeURIComponent(key) + '=' + encodeURIComponent(params[key])
+          )
+          })
+          .join('&')
+  )
+  }
+
+
+
+  export const getParamsFromLocation = (query:any , form:any) => {
+    const qKeys = Object.keys(query)
+    qKeys.forEach(key => {
+      if(key in form && query[key] != 'null') {
+          form[key] = typeof form[key] == 'string' ? query[key] : parseInt(query[key])
+      }
+    })
+  }
+
+
+  export const convertDate = (date :string) => {
+    let d = new Date(date);
+    // const formattedDate = ` ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()} ${d.getFullYear()}-${d.getMonth()}-${d.getDay()}`
+    const formattedDate = d.toUTCString()
+    return formattedDate.substring(0 , formattedDate.length-3)
+  }

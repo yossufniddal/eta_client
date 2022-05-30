@@ -1,7 +1,6 @@
 import { FormInterface } from './../../../utils/form/interface';
-import { convertToRequred } from '@/utils/form/inputs/InputStore';
 import Form from '@/utils/form/Form';
-import {transSerialInput,  statusInput , storeInput , fromDate , toDate} from '@/utils/form/inputs/InputStore'
+import {convertToRequred , statusInput , storeInput , fromDate , toDate} from '@/utils/form/inputs/InputStore'
 import Input from '@/utils/form/inputs/Input';
 
 

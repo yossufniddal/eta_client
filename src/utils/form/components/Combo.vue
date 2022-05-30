@@ -11,6 +11,7 @@
     :append-icon="input.required ? 'mdi-asterisk' : ''"
     return-object
     hide-details
+    outlined
     :clearable="input.clearable || false"
     :label="$t(input.label)"
     single-line

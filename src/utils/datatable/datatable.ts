@@ -5,22 +5,24 @@ import DatatableIntetrface , {Header , Totals} from './datatableInterface'
 import { currency } from '@/utils/helpers'
 import Form from '../form/Form'
 import Api from '../axios/Api';
-import { filter } from 'vue/types/umd';
+import TableHeader from './header/header';
+import { HeaderInterface } from './header/headerInterface';
 
 const Http = Api.getInstance();
 export default class Datatable{ 
-    title: string
-    description: string
-    headers: Header[]
+    title?: string
+    description?: string
+    headers: TableHeader[]
     url:string
     hasFilters:boolean = false
-    hasFooter:boolean
+    hasFooter:boolean = false
     data:any[] = []
     search:string=""
     searchable:boolean = false
     loading:boolean = true
     filters?:Form
     error:boolean = false
+    hasPrice:boolean = false
     hasEdit:boolean = false
     hasCreate:boolean = false
     hasView:boolean = false
@@ -30,10 +32,11 @@ export default class Datatable{
         this.description = details.description
         this.headers = details.headers
         this.url = details.url
-        this.hasFooter = details.hasFooter
         // because details is nullable so we use simple check to set this value
+        if(details.hasFooter) this.hasFooter  = details.hasFooter
         if(details.searchable) this.searchable  = details.searchable
         if(details.hasEdit) this.hasEdit  = details.hasEdit
+        if(details.hasPrice) this.hasPrice  = details.hasPrice
         if(details.hasView) this.hasView  = details.hasView
         if(details.hasCreate) this.hasCreate  = details.hasCreate
         if(details.filters){
@@ -42,15 +45,6 @@ export default class Datatable{
         }
 
         this.getData()
-    }
-
-
-    public removeRow(serial : number) {
-        this.loading = true
-        this.data = this.data.filter(row => {
-            return row.serial != serial
-        })
-        this.loading = false
     }
     // get the datatable data from the server
     public getData() {
@@ -86,12 +80,21 @@ export default class Datatable{
                 // an if its total that means we need to sum all the values to display it into datatable footer
                 if(this.hasFooter){
                     data.map((i:any) => {
-                        this.headers.forEach((header:Header) => {
+                        this.headers.forEach((header:HeaderInterface) => {
                             if(header.isTotal){
-                                header.total += i[header.value as keyof typeof res]
+                                header.total += i[header.key as keyof typeof res]
                             }
                             if(header.isPrice){
-                                i[header.value as keyof typeof data] = currency(i[header.value as keyof typeof res])
+                                i[header.key as keyof typeof data] = currency(i[header.key as keyof typeof res])
+                            }
+                        })
+                        return i
+                    })
+                } else if(this.hasPrice && !this.hasFooter) {
+                    data.map((i:any) => {
+                        this.headers.forEach((header:HeaderInterface) => {
+                            if(header.isPrice){
+                                i[header.key as keyof typeof data] = currency(i[header.key as keyof typeof res])
                             }
                         })
                         return i

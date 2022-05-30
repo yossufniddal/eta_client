@@ -7,7 +7,7 @@ import {currentDate} from '@/utils/helpers'
 
 export const transSerialInput:SelectInputInterface =  {
   name:"transSerial",
-
+  cols:6,
   text : 'key',
   cache:true,
   initialFetch:false,
@@ -33,7 +33,7 @@ export const statusInput:SelectInputInterface =  {
   text : 'key',
   cache:true,
   initialFetch:false,
-  cols:6,
+  cols:4,
   clearable:true,
   value : 'value',
   type : 'select',
@@ -55,6 +55,7 @@ export const storeInput:SelectInputInterface =  {
   name:"store",
   cache : false,
   text : 'store_name',
+  cols:6,
   initialFetch:true,
   clearable:true,
   value : 'store_code',

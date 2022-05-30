@@ -8,6 +8,7 @@ module.exports = {
       args[0].title = 'Nozom E-Invoice | الفاتورة الالكترونية من النطم'
       return args
   })},
+  runtimeCompiler: true,
   pluginOptions: {
     i18n: {
       locale: "ar",

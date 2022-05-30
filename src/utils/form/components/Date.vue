@@ -17,6 +17,7 @@
         :append-icon="input.required ? 'mdi-asterisk' : ''"
         readonly
         v-model="model"
+        outlined
         v-on="on"
       ></v-text-field>
     </template>

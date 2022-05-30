@@ -1,16 +1,25 @@
-import { Header } from '@/utils/datatable/datatableInterface';
+import { ConvertToEInvoice } from './../../../repositories/order';
+import { Action } from './../../../utils/datatable/datatableInterface';
+import { HeaderInterface } from './../../../utils/datatable/header/headerInterface';
 import DatatableIntetrface from '@/utils/datatable/datatableInterface'
 import Datatable  from '@/utils/datatable/datatable'
-import i18n from '@/i18n'
 import filters from './filter';
-const headers:Header[] = [
-  {value:'serial', text: i18n.t('table.serial').toString() , isPrice : false , isTotal:false , total:0},
-  {value:'docNo', text: i18n.t('table.docNo').toString() , isPrice : false , isTotal:false , total:0},
-  {value:'docDate', text: i18n.t('table.docDate').toString() , isPrice : false , isTotal:false , total:0},
-  {value:'discount', text: i18n.t('table.discount').toString() , isPrice : true , isTotal:true , total:0},
-  {value:'totalTax', text: i18n.t('table.totalTax').toString() , isPrice : true , isTotal:true , total:0},
-  {value:'totalCash', text: i18n.t('table.totalCash').toString() , isPrice : true , isTotal:true , total:0},
-  {value:'actions', text: i18n.t('table.actions').toString() , isPrice : false , isTotal:false , total:0},
+import TextHeader from '@/utils/datatable/header/textHeader';
+import PriceHeader from '@/utils/datatable/header/priceHeader';
+import DateHeader from '@/utils/datatable/header/dateHeader';
+import ActionsHeader from '@/utils/datatable/header/actionsHeader';
+import SalesActions from './actions';
+
+
+
+const headers:HeaderInterface[] = [
+  new TextHeader("serial"),
+  new TextHeader("docNo"),
+  new DateHeader("docDate"),
+  new PriceHeader("discount"),
+  new PriceHeader("totalTax"),
+  new PriceHeader("totalCash"),
+  new SalesActions()
 ]
 const url = "orders"
 
