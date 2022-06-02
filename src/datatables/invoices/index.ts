@@ -1,23 +1,26 @@
-import { Header } from '@/utils/datatable/datatableInterface';
+import { HeaderInterface } from '@/utils/datatable/header/headerInterface';
 import DatatableIntetrface from '@/utils/datatable/datatableInterface'
 import Datatable  from '@/utils/datatable/datatable'
-import i18n from '@/i18n'
 import filters from './filter';
+import TextHeader from '@/utils/datatable/header/textHeader';
+import PriceHeader from '@/utils/datatable/header/priceHeader';
+import InvoicesActions from './actions';
 
-const headers:Header[] = [
-  {value:'serial', text: i18n.t('table.serial').toString() , isPrice : false , isTotal:false , total:0},
-  {value:'internlID', text: i18n.t('table.internlID').toString() , isPrice : false , isTotal:false , total:0},
-  {value:'totalDiscountAmount', text: i18n.t('table.totalDiscountAmount').toString() , isPrice : true , isTotal:true , total:0},
-  {value:'totalTax', text: i18n.t('table.totalTax').toString() , isPrice : true , isTotal:true , total:0},
-  {value:'totalAmount', text: i18n.t('table.totalAmount').toString() , isPrice : true , isTotal:true , total:0},
-  {value:'actions', text: i18n.t('table.actions').toString() , isPrice : false , isTotal:false , total:0},
+const headers:HeaderInterface[] = [
+  new TextHeader("serial"),
+  new TextHeader("internlID"),
+  new PriceHeader("totalDiscountAmount"),
+  new PriceHeader("totalTax"),
+  new PriceHeader("totalAmount"),
+  new PriceHeader("totalCash"),
+  new InvoicesActions()
 ]
 const url = "invoices"
 
 const params:DatatableIntetrface = {
-    title : "sidebar.orders_converted",
+    title : "sidebar.invoice",
     headers ,
-    description:"orders_converted_desc",
+    description:"invoice_desc",
     searchable:true,
     url,
     filters,

@@ -32,7 +32,7 @@ import data from "@/datatables/invoices";
 import datatable from "@/utils/datatable/components/datatable.vue";
 import { PostEtaInvoice } from "@/repositories/invoice";
 export default Vue.extend({
-  name: "consultutns-list",
+  name: "invoices-list",
   components:{
     datatable
   },

@@ -10,7 +10,10 @@ export const switchLanguage = (locale: string, ctx: any) => {
 };
 
 export const numberWithCommas = (x: number) => {
-  const xFixed = typeof x.toFixed != 'undefined' ? x.toFixed(3) : 6.640.toFixed(3)
+  if (typeof x == 'undefined'){
+    return 0
+  }
+  const xFixed = x.toFixed(3) 
   const val = xFixed.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return val
 };
