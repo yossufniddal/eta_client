@@ -1,19 +1,16 @@
 import { serializeQuery } from './../helpers';
 // this class is responsible for generating datatable
 // we can say that this is the datatable kitchen
-import DatatableIntetrface , {Totals} from './datatableInterface'
+import DatatableIntetrface , {Header , Totals} from './datatableInterface'
 import { currency } from '@/utils/helpers'
 import Form from '../form/Form'
 import Api from '../axios/Api';
-import TableHeader from './header/header';
-import { HeaderInterface } from './header/headerInterface';
 
 const Http = Api.getInstance();
 export default class Datatable{ 
     title?: string
-    icon?: string
     description?: string
-    headers: TableHeader[]
+    headers: Header[]
     url:string
     hasFilters:boolean = false
     hasFooter:boolean = false
@@ -30,7 +27,6 @@ export default class Datatable{
     totals:Totals[] = []
     public constructor(details:DatatableIntetrface){
         this.title = details.title
-        this.icon = details.icon
         this.description = details.description
         this.headers = details.headers
         this.url = details.url
@@ -62,7 +58,7 @@ export default class Datatable{
             if(typeof this.filters !='undefined' ) url += `?${serializeQuery(this.filters.state)}`
             // use the axios base class to send the request to the server with generated url
             Http.get<any[]>(url)
-            .then((res:any) =>  {
+            .then((res) =>  {
                 // first check if response is null to set it to empty array to avoid errors on the datatable component
                 // because it expects to reserve an array
                 // and reset is just setting loading and error to default values
@@ -82,21 +78,21 @@ export default class Datatable{
                 // an if its total that means we need to sum all the values to display it into datatable footer
                 if(this.hasFooter){
                     data.map((i:any) => {
-                        this.headers.forEach((header:HeaderInterface) => {
-                            if(header.isPrice){
-                                header.total += i[header.key as keyof typeof res]
+                        this.headers.forEach((header:Header) => {
+                            if(header.isTotal){
+                                header.total += i[header.value as keyof typeof res]
                             }
                             if(header.isPrice){
-                                i[header.key as keyof typeof data] = currency(i[header.key as keyof typeof res])
+                                i[header.value as keyof typeof data] = currency(i[header.value as keyof typeof res])
                             }
                         })
                         return i
                     })
                 } else if(this.hasPrice && !this.hasFooter) {
                     data.map((i:any) => {
-                        this.headers.forEach((header:HeaderInterface) => {
+                        this.headers.forEach((header:Header) => {
                             if(header.isPrice){
-                                i[header.key as keyof typeof data] = currency(i[header.key as keyof typeof res])
+                                i[header.value as keyof typeof data] = currency(i[header.value as keyof typeof res])
                             }
                         })
                         return i
@@ -105,7 +101,7 @@ export default class Datatable{
                 this.data  = data
                 this._reset()
                 resolve(res)        
-            }).catch((e:any) => {
+            }).catch(e => {
                 this.loading = false
                 this.error = true
                 reject(e)

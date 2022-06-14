@@ -1,11 +1,11 @@
 import { FormInterface } from './../../utils/form/interface';
 import Form from '@/utils/form/Form';
-import {  statusInput } from '@/utils/form/inputs/InputStore'
+import {  activeFilterInput } from '@/utils/form/inputs/InputStore'
 import Input from '@/utils/form/inputs/Input';
 
 
 const inputs: Input[] = [
-  new Input(statusInput)
+  new Input(activeFilterInput)
 ]
 
 const params :FormInterface = {

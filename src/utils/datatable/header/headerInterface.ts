@@ -3,7 +3,8 @@
 export interface HeaderInterface {
     text:string
     key:string
-    isTotal?:boolean
+    isPrice?:boolean
+    isImage?:boolean
     total?:number
     generateColumnHtml:Function
 }

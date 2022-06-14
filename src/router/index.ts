@@ -21,13 +21,7 @@ const routes: Array<RouteConfig> = [
         path: "orders",
         name: "orders",
         component: () => import('@/views/orders/index.vue'),
-        meta: { transition: 'slide-right' },
-
-      },
-      {
-        path: "orders/pos",
-        name: "orders/pos",
-        component: () => import('@/views/orders/pos.vue'),
+        meta: { transition: 'slide-right'},
       },
 
       // invoices rotues

@@ -2,9 +2,11 @@
     <v-text-field
       :label="$t(input.label)"
       :prepend-icon="input.icon"
-      :type="type"
       :append-icon="input.required ? 'mdi-asterisk' : ''"
       :rules="input.rules ? input.rules : []"
+      :value="initial"
+      :hint="input.hint"
+      :type="input.type"
       outlined
       @input="change"
     ></v-text-field>
@@ -15,16 +17,18 @@
 <script lang="ts">
 import Vue from "vue";
 export default Vue.extend({
-  props: {
-    input: Object,
-    type:{
-      default: "select"
-    }
-  },
+  props:['input' , 'initial'],
   methods:{
     change(val:any){
       this.input.val = val
-      this.$emit('input')
+
+      // if (this.type == 'number') {
+      //   val = parseInt(val)
+      // }
+      if(this.input.isNumber) {
+        val = parseFloat(val)
+      }
+      this.$emit('input'  ,val)
     }
   }
 });

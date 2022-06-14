@@ -2,7 +2,7 @@ import i18n  from '@/i18n';
 import Vue from "vue";
 import { HeaderInterface } from "./headerInterface"
 
-export default class TextHeader implements HeaderInterface{ 
+export default class LevelHeader implements HeaderInterface{ 
     text: string;
     key: string;
     isImage?: boolean = false;
@@ -13,7 +13,9 @@ export default class TextHeader implements HeaderInterface{
        this.key = key  == '' ? text : key
     }
     public generateColumnHtml(item : any){
-        let value = item[this.key]
+        // const roles = [ ,'طموح' ,'مبادر' , 'ريادي']
+        const roles = ['مبادر' , 'طموح' , 'ريادي']
+        let value = roles[item[this.key]]
         return Vue.component('text-td', {
           template: `<td>${value}</td>`
         })

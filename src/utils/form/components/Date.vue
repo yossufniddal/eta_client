@@ -17,14 +17,16 @@
         :append-icon="input.required ? 'mdi-asterisk' : ''"
         readonly
         v-model="model"
-        outlined
         v-on="on"
+        outlined
       ></v-text-field>
     </template>
     <!-- // Determines the type of the picker - date for date picker, month for month picker -->
     <v-date-picker
       locale="en-in"
       color="primary"
+      
+      
       :type="input.limit"
       @change="change"
       no-title
@@ -51,7 +53,7 @@ export default Vue.extend({
         this.active = false
         this.model = val
         this.input.val = val
-        this.$emit("change", val);
+      this.$emit("input", val);
     },
   },
 });

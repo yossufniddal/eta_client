@@ -1,10 +1,9 @@
 <template>
   <v-select
     @change="change"
-    
+    @click:clear="change"
     :item-text="input.text"
     :item-value="input.value"
-    :value="input.initial || null"
     :items="input.items"
     :clearable="input.clearable"
     :loading="loading"
@@ -13,8 +12,10 @@
     hide-details
     :rules="input.rules ? input.rules : []"
     :label="$t(input.label)"
-    single-line
     outlined
+    single-line
+    :value="initial"
+
   ></v-select>
 </template>
 
@@ -25,19 +26,14 @@ const Http = Api.getInstance();
 export default Vue.extend({
   data(){
     return{
-      loading:false,
+      loading:true,
     }
   },  
-  props: {
-    input: Object,
-  },
+  props:['input' , 'initial'],
   methods:{
       change(val:any){
-        if(typeof this.input.change != 'undefined'){
-          this.input.change(val)
-        }
-        this.input.val = val
-        this.$emit('change')
+        const value = typeof val == 'undefined'? null :val
+        this.$emit('input' , value)
       },
       getData(){
         this.loading = true
@@ -51,11 +47,7 @@ export default Vue.extend({
       }
   },
   created(){
-    // this.loading = false
-    if (this.input.initialFetch){
-      // this.getData()
-    } else {
-    }
+    this.input.initialFetch ?  this.getData() : this.loading = false
   }
 });
 </script>

@@ -44,16 +44,6 @@
     color: #fff;
     border-radius: 5px;
 }
-.datatable-header{
-    padding: 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    &:first-child{
-        width: 50%;
-        margin: 0 20px;
-    }
-}
 .p-0{
     padding: 0 !important;
 }
@@ -77,4 +67,14 @@
             margin: 5px 10px 0 10px;
         }
     }
+}
+
+.w-full{
+    width: 100% !important;
+}
+
+.flex-space{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

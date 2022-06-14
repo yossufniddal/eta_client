@@ -1,13 +1,19 @@
+import { VueConstructor } from "vue/types/umd"
 import Input from "./inputs/Input"
 
 export type TextInputInterface = {
     name: string
     label: string
+    isNumber?:boolean
+    hint?:string
     icon: string
     cols: number
     type:string
+    generateInputHtml:() => VueConstructor<Vue>
+
     rules?:Array<Function>,
     val?:any
+    isImg?:boolean
     initial?:any,
     required?:boolean
     value:any
@@ -16,21 +22,22 @@ export type SwitchInputInterface = {
     name: string
     label: string
     cols: number
+    generateInputHtml:() => VueConstructor<Vue>
     required?:boolean
-    rules?:Array<Function>,
     initial?:any,
+    value:any,
     type:string
-    val?:boolean
 }
 export type DateInputInterface = {
     name: string
     label : string
     min : string
-    rules?:Array<Function>,
     max : string
     required?:boolean
+    cols?:number
+    generateInputHtml:() => VueConstructor<Vue>
     val?:any
-    value : string
+    value : any
     limit:string
     initial?:any
     type: string
@@ -38,12 +45,12 @@ export type DateInputInterface = {
 
 export type SelectInputInterface = {
     name: string
+    generateInputHtml:() => VueConstructor<Vue>
     cache: boolean
     clearable?:boolean
     text: string
-    val?:any
-    value: string
-    rules?:Array<Function>,
+    value?: string
+    valueKey: string
     type:string
     initialFetch:boolean
     initial?:any,

@@ -8,11 +8,11 @@ export default [
         title: "sidebar.orders",
         to: `/orders`,
       },
-       {
-        icon: "mdi-account-outline",
-        title: "sidebar.pos_orders",
-        to: `/orders/pos`,
-      },
+      //  {
+      //   icon: "mdi-account-outline",
+      //   title: "sidebar.pos_orders",
+      //   to: `/orders/pos`,
+      // },
       
      
     ]
