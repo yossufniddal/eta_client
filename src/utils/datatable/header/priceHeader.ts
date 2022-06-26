@@ -16,7 +16,7 @@ export default class PriceHeader implements HeaderInterface {
  public generateColumnHtml(item : any){
   let value = item[this.key]
     return Vue.component('price-td', {
-      template: `<td>${currency(parseFloat(value))}</td>`
+      template: `<td>${value}</td>`
     })
   }
 }

@@ -104,7 +104,7 @@ export const activeFilterInput:SelectInputInterface =  {
   text: 'key',
   cache: true,
   initialFetch: false,
-  cols: 4,
+  cols: 6,
   clearable: true,
   type: 'select',
   generateInputHtml: () => Vue.extend(SelectInputComponent),
@@ -154,7 +154,9 @@ export const passwordInput:TextInputInterface =  {
 }
 
 export const convertToRequred = (input:InputInterface) => {
-    const req = {...input}
+    let req = {...input}
+
+    if(req.clearable) req.clearable = false;
     req.required = true
     return req
 }

@@ -33,7 +33,7 @@ export const clearNullValues = (obj:Object) => {
   let clone = { ...obj }
   Object.keys(clone).forEach((key) => {
     let k = key as keyof typeof clone
-    clone[k] === null || '' ? delete clone[k] : ''
+    if (clone[k] == null || clone[k]  as unknown as string == "" ) delete clone[k]
   })
   return clone
 }

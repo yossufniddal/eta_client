@@ -3,29 +3,6 @@
   <div>
     <v-container>
       <v-row>
-        <!-- <v-col cols="12" v-if="table.title">
-          <v-card>
-            <v-card-text>
-              <h2 class="primary-text mb-4 text-center">
-                {{ $t(table.title) }}
-              </h2>
-              <p class="text-center" v-if="table.description">
-                >{{ $t(table.description) }}
-              </p>
-            </v-card-text>
-          </v-card>
-        </v-col> -->
-        <!-- <v-col cols="12" v-if="table.hasFilters">
-          <v-card>
-            <v-card-text>
-              <app-form :form="table.filters">
-                <slot name="title">
-                  <h2 class="ma-auto mt-4 mb-4">{{ $t("select_data") }}</h2>
-                </slot>
-              </app-form>
-            </v-card-text>
-          </v-card>
-        </v-col> -->
         <v-col cols="12">
           <v-data-table
             :headers="table.headers"
@@ -34,12 +11,14 @@
             dense
             :page.sync="page"
             :items-per-page="itemsPerPage"
+            show-select
             @page-count="pageCount = $event"
             :search="table.search"
             class="elevation-4"
             fixed-header
-            height="400px"
+            height="800px"
           >
+           
             <template v-slot:top>
               <div class="datatable-header w-full">
                 <div class="w-full  flex-space bgdarker pa-4">
@@ -49,31 +28,31 @@
                     </span
                   >
 
-                  <!-- <v-btn
+                  <v-btn
                     dark
                     class="gr-bg"
-                    v-bind="attrs"
+                    @click.prevent="uploadMultiple"
                     prepen
-                    v-on="on"
+                  
                   >
                   <v-icon  class="mr-3 ml-3">mdi-dots-horizontal-circle-outline</v-icon>
-                    {{$t('actions')}}
-                  </v-btn> -->
+                    {{$t('upload')}}
+                  </v-btn>
                 </div>
                 <div class="pa-4">
                   <v-expansion-panels class="gr-bg " v-model="filtersOpened">
                     <v-expansion-panel>
                       <v-expansion-panel-header>
-                        <template v-slot:default="{ open }">
-                          <span v-if="!open" key="0">
+                      
+                          <!-- <span v-if="!open" key="0">
                             <v-icon>mdi-filter-multiple-outline</v-icon>
                             {{$t('advanced_search')}}
-                          </span>
-                          <span v-else>
+                          </span> -->
+                          <span >
                             <v-icon>mdi-filter-multiple-outline</v-icon>
                           {{$t('select_data')}}
                           </span>
-                        </template>
+                       
                       </v-expansion-panel-header>
                       <v-expansion-panel-content>
                         <app-form :form="table.filters">
@@ -92,6 +71,7 @@
                   <v-pagination
                     v-model="page"
                     :length="pageCount"
+                    :total-visible="7"
                   ></v-pagination>
                 </div>
 
@@ -150,6 +130,15 @@
             </template>
             <template v-slot:[`item`]="{ item }">
               <tr :class="{ red: item.Active == false }">
+                <td>
+                 <v-checkbox
+                  v-model="selectedItems"
+                  multiple
+                 :value="item"
+                 :ietm-value="item"
+                 
+                ></v-checkbox>
+                </td>
                 <component
                   v-for="(head, index) in table.headers"
                   :key="index"
@@ -209,9 +198,12 @@
 import Datatable from "@/utils/datatable/datatable";
 import {
   addParamsToLocation,
+  clearNullValues,
   currency,
   getParamsFromLocation,
 } from "@/utils/helpers";
+
+import { PostEtaInvoice } from "@/repositories/invoice"
 import AppForm from "@/utils/form/components/Form.vue";
 import Vue from "vue";
 import { HeaderInterface } from "../header/headerInterface";
@@ -222,8 +214,9 @@ export default Vue.extend({
   data() {
     return {
       approvedServiceId: 0,
-      filtersOpened:true,
+      filtersOpened:[0],
       msgModal: false,
+      selectedItems:[],
       page: 1,
       itemsPerPage: 10,
       pageCount: 0,
@@ -255,13 +248,24 @@ export default Vue.extend({
   watch: {
     "table.filters.state": {
       handler(newValue) {
-        addParamsToLocation(newValue, this.$route.path);
+        addParamsToLocation(clearNullValues(newValue), this.$route.path);
+        this.table.filters!.valid = this.table.filters!.validate()
+        console.log(this.table.filters!.valid)
         this.filter();
       },
       deep: true,
     },
   },
   methods: {
+    uploadMultiple(){
+      this.selectedItems.forEach((item : any) => {
+        setTimeout(() => {
+          PostEtaInvoice(item.serial , item.storeCode)
+        } , 1000)
+        
+
+      });
+    },
     currency: (x: number) => currency(x),
     filter() {
       // reset headers totals to avoid sum bug

@@ -27,19 +27,11 @@ export default class Form implements FormInterface {
         if (this.hasValidation == false) {
             return true
         }
-        console.log(this.inputs.length)
         for (let index = 0; index < this.inputs.length; index++) {
-            console.log(`this.hasValidation${index}`)
             const input = this.inputs[index];
             const state = this.state;
             const value =  state[input.field.name as keyof typeof state]
             const isInputEmpty = value == null || typeof value == 'undefined'
-            console.log(state[input.field.name as keyof typeof state] == null)
-            console.log("valid")
-            console.log(isInputEmpty)
-            console.log(value)
-            
-            console.log("valid")
             if (input.field.required == true && isInputEmpty) {
                 return false
             }

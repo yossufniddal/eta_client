@@ -1,3 +1,4 @@
+import DateHeader  from '@/utils/datatable/header/dateHeader';
 import ActionsHeader from '@/utils/datatable/header/actions/actionsHeader';
 import { HeaderInterface } from '@/utils/datatable/header/headerInterface';
 import DatatableIntetrface from '@/utils/datatable/datatableInterface'
@@ -18,20 +19,21 @@ const convertAction :() => Action = () => {
   return action
 }
 const convert = (item : any) => {
-  PostEtaInvoice(item.serial).then((res:any) => {
+  PostEtaInvoice(item.serial , parseInt(item.storeCode)).then((res:any) => {
     console.log(res)
   })
   // router.push({name : `${router.currentRoute.name}-edit` , params:{id : item.Id}})
 }
-  let actions = new ActionsHeader('invoices'  , {edit : false , view : true , delete : false})
+  let actions = new ActionsHeader('invoices' , {})
   actions.actions.push(convertAction())
-const headers:HeaderInterface[] = [
+  const headers:HeaderInterface[] = [
   new TextHeader("serial"),
-  new TextHeader("internlID"),
-  new PriceHeader("totalDiscountAmount"),
+  // new TextHeader("internlID"),
+  // new PriceHeader("totalDiscountAmount"),
   new PriceHeader("totalTax"),
   new PriceHeader("totalAmount"),
-  new PriceHeader("totalCash"),
+  new DateHeader("dateTimeIssued"),
+  // new PriceHeader("totalCash"),
   actions
 ]
 const url = "invoices"

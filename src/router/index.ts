@@ -16,13 +16,13 @@ const routes: Array<RouteConfig> = [
         component: Home,
         meta: { transition: 'slide-left' },
       },
-      // orders rotues
-      {
-        path: "orders",
-        name: "orders",
-        component: () => import('@/views/orders/index.vue'),
-        meta: { transition: 'slide-right'},
-      },
+      // // orders rotues
+      // {
+      //   path: "orders",
+      //   name: "orders",
+      //   component: () => import('@/views/orders/index.vue'),
+      //   meta: { transition: 'slide-right'},
+      // },
 
       // invoices rotues
       {

@@ -1,4 +1,4 @@
-import { serializeQuery } from './../helpers';
+import { serializeQuery, clearNullValues } from './../helpers';
 // this class is responsible for generating datatable
 // we can say that this is the datatable kitchen
 import DatatableIntetrface , {Totals} from './datatableInterface'
@@ -50,6 +50,9 @@ export default class Datatable{
     }
     // get the datatable data from the server
     public getData() {
+        console.log("Adsasdasdasd")
+        console.log(typeof this.filters != 'undefined' && !this.filters?.valid)
+        
         if(typeof this.filters != 'undefined' && !this.filters?.valid){
             this._reset()
             return
@@ -57,9 +60,12 @@ export default class Datatable{
         return new Promise((resolve , reject) => {
             this.loading = true
             let url = this.url
+
+            // generate the query from the filters form state
+            const query : string = this.filters ?  serializeQuery(clearNullValues(this.filters!.state)) : ""
             // check if this datatable has filters so we serialize the form object to send the filters with request as query string
             //{filter : "value" ,filter2 : "value2" } will be url?key=value&key2=value2
-            if(typeof this.filters !='undefined' ) url += `?${serializeQuery(this.filters.state)}`
+            if(typeof this.filters !='undefined' ) url += `?${query}`
             // use the axios base class to send the request to the server with generated url
             Http.get<any[]>(url)
             .then((res:any) =>  {

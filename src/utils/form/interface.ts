@@ -7,6 +7,7 @@ export type TextInputInterface = {
     isNumber?:boolean
     hint?:string
     icon: string
+    clearable?:boolean
     cols: number
     type:string
     generateInputHtml:() => VueConstructor<Vue>
@@ -21,6 +22,7 @@ export type TextInputInterface = {
 export type SwitchInputInterface = {
     name: string
     label: string
+    clearable?:boolean
     cols: number
     generateInputHtml:() => VueConstructor<Vue>
     required?:boolean
@@ -31,6 +33,7 @@ export type SwitchInputInterface = {
 export type DateInputInterface = {
     name: string
     label : string
+    clearable?:boolean
     min : string
     max : string
     required?:boolean
