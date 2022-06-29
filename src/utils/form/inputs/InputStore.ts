@@ -8,31 +8,31 @@ import SelectInputComponent from '../components/Select.vue'
 import ComboInputComponent from '../components/Combo.vue'
 import { InputInterface } from '@/utils/form/interface';
 import { TextInputInterface , SwitchInputInterface , DateInputInterface , SelectInputInterface } from '../interface';
-import {name , required , email, num} from "@/utils/validations/validations" 
+import { required } from "@/utils/validations/validations" 
 
 
 export const fromDateInput:DateInputInterface =  {
-  name:"fromDate",
-  label : "date",
+  name:"start_date",
+  label : "from_date",
   limit:'date',
   min : "",
   max : "",
   type:'date',
   generateInputHtml : () =>   Vue.extend(DateInputComponent),
-  cols:4,
+  cols:6,
   value : "",
 }
 
 
 export const toDateInput:DateInputInterface =  {
-  name:"toDate",
-  label : "date",
+  name:"end_date",
+  label : "to_date",
   limit:'date',
   min : "",
   max : "",
   type:'date',
   generateInputHtml : () =>   Vue.extend(DateInputComponent),
-  cols:4,
+  cols:6,
   value : "",
 }
 

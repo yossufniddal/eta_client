@@ -4,9 +4,9 @@ import post from "@/models/order"
 
 const Http = Api.getInstance();
 
-export const PostEtaInvoice = (id:number , store:number) :Promise<post> => {
+export const PostEtaInvoice = (payload: any) :Promise<post> => {
     return new Promise((resolve, reject) => {
-        Http.post(`invoices/post/${id}/${store}`)
+        Http.post(`invoices/post` , payload)
         .then((d:any) => {
              resolve(d)
         }).catch((e:any) => {

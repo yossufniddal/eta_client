@@ -131,6 +131,7 @@
             <template v-slot:[`item`]="{ item }">
               <tr :class="{ red: item.Active == false }">
                 <td>
+                  {{serials}}
                  <v-checkbox
                   v-model="selectedItems"
                   multiple
@@ -212,7 +213,13 @@ export default Vue.extend({
     table: Datatable,
   },
   data() {
+    let serials = ""
+    for (let index = 29; index < 45; index++) {
+      serials += `${index},`
+      
+    }
     return {
+      serials,
       approvedServiceId: 0,
       filtersOpened:[0],
       msgModal: false,
@@ -258,13 +265,22 @@ export default Vue.extend({
   },
   methods: {
     uploadMultiple(){
+      let serials : string = ""
       this.selectedItems.forEach((item : any) => {
-        setTimeout(() => {
-          PostEtaInvoice(item.serial , item.storeCode)
-        } , 1000)
-        
-
+        serials += `${item.serial},`
       });
+
+      let store :number = parseInt(this.$route.query.store as string)
+
+      const request = {
+        serials,
+        store
+      }
+      PostEtaInvoice(request).then(res => {
+        console.log("res")
+        console.log(res)
+      })
+
     },
     currency: (x: number) => currency(x),
     filter() {
