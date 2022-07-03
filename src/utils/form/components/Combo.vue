@@ -32,9 +32,7 @@ export default Vue.extend({
       model:null as Object | null
     }
   },
-  props: {
-    input: Object,
-  },
+  props: ['input' , 'initital'],
   methods:{
       change(val:any){
         const value = typeof val == 'undefined' || val == null ? null :val[this.input.valueKey]

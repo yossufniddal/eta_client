@@ -131,7 +131,7 @@
             <template v-slot:[`item`]="{ item }">
               <tr :class="{ red: item.Active == false }">
                 <td>
-                  {{serials}}
+          
                  <v-checkbox
                   v-model="selectedItems"
                   multiple
@@ -213,13 +213,8 @@ export default Vue.extend({
     table: Datatable,
   },
   data() {
-    let serials = ""
-    for (let index = 29; index < 45; index++) {
-      serials += `${index},`
-      
-    }
+    
     return {
-      serials,
       approvedServiceId: 0,
       filtersOpened:[0],
       msgModal: false,
@@ -271,14 +266,20 @@ export default Vue.extend({
       });
 
       let store :number = parseInt(this.$route.query.store as string)
+      console.log("this.$route.query.store")
 
+      let state = this.table.filters?.state as any
       const request = {
         serials,
-        store
+        store : parseInt(state.store)
       }
+      this.table.loading = true
       PostEtaInvoice(request).then(res => {
-        console.log("res")
-        console.log(res)
+        this.table.getData()
+        this.table.loading = false
+      }).catch(e => {
+        this.table.getData()
+        this.table.loading = false
       })
 
     },
