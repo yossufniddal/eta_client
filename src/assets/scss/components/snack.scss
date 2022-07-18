@@ -1,0 +1,26 @@
+.snackbar{
+    transition: transform .3s ease-in-out;
+    background-color: var(--success);
+    color: #fff;
+    padding: 30px;
+    direction: rtl !important;
+    position: fixed;
+    top: 30px;
+    width: 250px;
+    text-align: center;
+    right: 10px;
+    z-index: 40;
+    border-radius: 15px;
+    transform: translate(400px);
+    &.active{
+        transform: translate(0);
+
+    }
+    & p{
+        padding: 0;
+        margin: 0;
+    }
+    & h2{
+        margin: 0 0 10px 0;
+    }
+}

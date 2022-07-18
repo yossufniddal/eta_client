@@ -13,6 +13,18 @@
   background-position: center;
 }
 
+.header {
+  display: block !important;
+}
+
+.header h2 {
+  margin-bottom: 20px;
+}
+
+.header svg {
+  font-size: 500px;
+}
+
 @media (max-width: 1400px) {
   .login_wrapper {
     -ms-grid-columns: 40% 60%;

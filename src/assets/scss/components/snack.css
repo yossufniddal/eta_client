@@ -1,0 +1,34 @@
+.snackbar {
+  -webkit-transition: -webkit-transform .3s ease-in-out;
+  transition: -webkit-transform .3s ease-in-out;
+  transition: transform .3s ease-in-out;
+  transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
+  background-color: var(--success);
+  color: #fff;
+  padding: 30px;
+  direction: rtl !important;
+  position: fixed;
+  top: 30px;
+  width: 250px;
+  text-align: center;
+  right: 10px;
+  z-index: 40;
+  border-radius: 15px;
+  -webkit-transform: translate(400px);
+          transform: translate(400px);
+}
+
+.snackbar.active {
+  -webkit-transform: translate(0);
+          transform: translate(0);
+}
+
+.snackbar p {
+  padding: 0;
+  margin: 0;
+}
+
+.snackbar h2 {
+  margin: 0 0 10px 0;
+}
+/*# sourceMappingURL=snack.css.map */

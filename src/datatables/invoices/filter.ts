@@ -6,7 +6,7 @@ import Input from '@/utils/form/inputs/Input';
 
 const inputs: Input[] = [
   new Input(convertToRequred(storeInput)),
-  new Input(activeFilterInput),
+  new Input(convertToRequred(activeFilterInput)),
   new Input(fromDateInput),
   new Input(toDateInput)
 ]

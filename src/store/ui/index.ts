@@ -6,7 +6,12 @@ import { UiState } from './types';
 import { RootState } from '../types';
 
 export const state: UiState = {
-    loading: true
+    loading: true,
+    snackBar:{
+        Active : false,
+        Title : "",
+        Msg : "",
+    }
 };
 
 const namespaced: boolean = true;

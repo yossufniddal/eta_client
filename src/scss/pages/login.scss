@@ -11,6 +11,15 @@
     background-size: cover;
     background-position: center;
   }
+  .header {
+    display: block !important;
+    & h2{
+      margin-bottom: 20px;
+    }
+    & svg{
+      font-size: 500px;
+    }
+  }
   @media (max-width: 1400px) {
     .login_wrapper {
       grid-template-columns: 40% 60%;

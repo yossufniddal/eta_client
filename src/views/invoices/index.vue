@@ -24,12 +24,14 @@
                 {{$t("invoices")}}
               </span>
               <v-menu
+                v-if="filters.state.posted != 1"
                 bottom
                 origin="center center"
                 transition="scale-transition"
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
+                    :loading="table.loading"
                     class="gr-bg"
                     v-bind="attrs"
                     v-on="on"
@@ -96,9 +98,10 @@
         <template v-slot:[`item.dateTimeIssued`]="{ item }">
           <td>{{convertDate(item.dateTimeIssued)}}</td>
         </template>
-        <template v-slot:[`item.actions`]="{ item }">
+        <template v-slot:[`item.actions`]="{ item }" v-if="filters.state.posted != 1">
           <td class="pa-4">
             <v-btn
+              :loading="table.loading"
               @click.prevent="upload([item])"
               dark
             >
@@ -118,6 +121,7 @@ import filters from "@/datatables/invoices/filter";
 import AppForm from "@/utils/form/components/Form.vue";
 import { EtaInvoicesList } from "@/repositories/invoice";
 import { PostEtaInvoice } from "@/repositories/invoice"
+import {openSnack} from '@/utils/snack/snack'
 import {
   addParamsToLocation,
   clearNullValues,
@@ -202,7 +206,12 @@ export default {
       handler(newValue) {
         addParamsToLocation(clearNullValues(newValue), this.$route.path);
         this.filters.valid = this.filters.validate();
-        this.getData();
+        let isStoreValid = !(typeof newValue.store == 'undefined' ||  newValue.store == null ||  newValue.store == '')
+        let isPostedValid = !(typeof newValue.posted == 'undefined' ||  newValue.posted == null ||  newValue.posted == '')
+        if(isStoreValid && isPostedValid){
+          this.getData();
+        }
+      
       },
       deep: true,
     },
@@ -235,9 +244,21 @@ export default {
         store : parseInt(state.store)
       }
       this.table.loading = true
-      PostEtaInvoice(request).then(res => {
+      PostEtaInvoice(request).then((res:any) => {
+        serials = ""
+        this.selected =[]
+        var parsed = JSON.parse(res)
+        console.log(parsed)
+        console.log(parsed.submissionId)
+        openSnack("success" , `${parsed.acceptedDocuments.length} document uploaded successfully`)
+        setTimeout(() => {
+          openSnack("success" , `${parsed.rejectedDocuments.length} failed to upload`)
+        } , 5500)
+
         this.getData()
       }).catch(e => {
+          openSnack("failed" , `failed to upload the whole request`)
+
         this.getData()
       })
     },
@@ -247,7 +268,12 @@ export default {
   },
   created() {
     getParamsFromLocation(this.$route.query, this.filters.state);
-    this.getData();
+    let state = this.filters.state as any
+    let isStoreValid = !(typeof state.store == 'undefined' ||  state.store == null ||  state.store == '')
+    let isPostedValid = !(typeof state.posted == 'undefined' ||  state.posted == null ||  state.posted == '')
+    if(isStoreValid && isPostedValid){
+      this.getData();
+    }
   },
 };
 </script>

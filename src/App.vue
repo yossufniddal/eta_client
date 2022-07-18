@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <loading v-if="loading"/>
+    <snack />
     <router-view />
   </v-app>
 </template>
@@ -10,10 +11,12 @@ import Vue from "vue";
 import Loading from "@/components/layouts/Loading.vue";
 import {mapGetters} from 'vuex'
 import { switchLanguage } from "@/utils/helpers";
+import snack from '@/components/utils/snack.vue'
 
 export default Vue.extend({
   name: "App",
   components: {
+    snack,
     Loading
   },
   computed:{

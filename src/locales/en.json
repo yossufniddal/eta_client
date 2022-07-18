@@ -15,7 +15,7 @@
   "password" : "password",
   "incorrect_uname" : "no users with this code found",
   "wrong_password" : "this password is incorrect",
-  "welcome_paragraph": "Magni voluptas omnis eum repudiandae nobis molestiae voluptates minima adipisci, quam aliquam consequuntur nisi non doloribus quia sit eligendi,",
+  "welcome_paragraph": "",
   "TotalTax": "TotalTax",
   "sidebar" : {
     "orders":"orders",

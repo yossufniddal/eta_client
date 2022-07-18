@@ -100,7 +100,7 @@ export const featuredInput:SwitchInputInterface =  {
 
 
 export const activeFilterInput:SelectInputInterface =  {
-  name: "active",
+  name: "posted",
   text: 'key',
   cache: true,
   initialFetch: false,
