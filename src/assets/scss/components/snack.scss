@@ -1,6 +1,5 @@
 .snackbar{
     transition: transform .3s ease-in-out;
-    background-color: var(--success);
     color: #fff;
     padding: 30px;
     direction: rtl !important;
@@ -12,6 +11,12 @@
     z-index: 40;
     border-radius: 15px;
     transform: translate(400px);
+    &.success{
+        background-color: var(--success);
+    }
+    &.failed{
+        background-color: var(--error);
+    }
     &.active{
         transform: translate(0);
 

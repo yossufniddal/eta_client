@@ -1,5 +1,5 @@
 <template>
-    <div class="snackbar" :class="snack.Active ? 'active' : ''">
+    <div class="snackbar " :class="snack.Active ? `active ${snack.Title}` : `${snack.Title}`">
         <h2>{{snack.Title}}</h2>
         <p>{{snack.Msg}}</p>
     </div>

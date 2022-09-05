@@ -3,7 +3,6 @@
   transition: -webkit-transform .3s ease-in-out;
   transition: transform .3s ease-in-out;
   transition: transform .3s ease-in-out, -webkit-transform .3s ease-in-out;
-  background-color: var(--success);
   color: #fff;
   padding: 30px;
   direction: rtl !important;
@@ -16,6 +15,14 @@
   border-radius: 15px;
   -webkit-transform: translate(400px);
           transform: translate(400px);
+}
+
+.snackbar.success {
+  background-color: var(--success);
+}
+
+.snackbar.failed {
+  background-color: var(--error);
 }
 
 .snackbar.active {

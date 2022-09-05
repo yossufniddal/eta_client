@@ -25,6 +25,16 @@ export default [
         icon: "mdi-account-outline",
         title: "sidebar.invoices",
         to: `/invoices`,
+      },
+      {
+        icon: "mdi-account-outline",
+        title: "sidebar.credit",
+        to: `/credit`,
+      },
+      {
+        icon: "mdi-account-outline",
+        title: "sidebar.debit",
+        to: `/debit`,
       }
     ]
   },

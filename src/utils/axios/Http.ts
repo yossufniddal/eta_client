@@ -11,9 +11,9 @@ declare module 'axios' {
 export default abstract class HttpClient {
   protected readonly instance: AxiosInstance;
 
-  public constructor() {
+  public constructor(baseUrl : string) {
     this.instance = axios.create({
-      baseURL: process.env.VUE_APP_API_URL,
+      baseURL: baseUrl,
     });
     this._initializeRequestInterceptor();
     this._initializeResponseInterceptor();

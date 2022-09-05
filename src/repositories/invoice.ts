@@ -1,12 +1,12 @@
 import { serializeQuery } from './../utils/helpers';
 import Api from '@/utils/axios/Api';
 import post from "@/models/order"
-
+import axios from 'axios'
 const Http = Api.getInstance();
 
 export const PostEtaInvoice = (payload: any) :Promise<post> => {
     return new Promise((resolve, reject) => {
-        Http.post(`invoices/post` , payload)
+        Http.post('invoices/post' , payload)
         .then((d:any) => {
              resolve(d)
         }).catch((e:any) => {

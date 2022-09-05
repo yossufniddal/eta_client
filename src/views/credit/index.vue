@@ -241,7 +241,7 @@ export default {
       let state = this.filters?.state as any
       const request = {
         serials,
-        type:"I",
+        type:"D",
         store : parseInt(state.store)
       }
       this.table.loading = true

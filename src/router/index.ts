@@ -30,6 +30,16 @@ const routes: Array<RouteConfig> = [
         name: "invoices",
         component: () => import('@/views/invoices/index.vue'),
       },
+      {
+        path: "debit",
+        name: "debit",
+        component: () => import('@/views/debit/index.vue'),
+      },
+      {
+        path: "credit",
+        name: "credit",
+        component: () => import('@/views/credit/index.vue'),
+      },
     ]
   },
   // {

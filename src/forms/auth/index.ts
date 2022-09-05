@@ -5,43 +5,43 @@ import Input from '@/utils/form/inputs/Input';
 import Form from '@/utils/form/Form';
 import router from '@/router'
 
-import { 
+import {
     convertToRequred,
     usernameInput,
     passwordInput
 } from '@/utils/form/inputs/InputStore'
 
-const inputs:Input[] = [
+const inputs: Input[] = [
     new Input(convertToRequred(usernameInput)),
     new Input(convertToRequred(passwordInput))
 ]
 
- const submit = (form:any) :Promise<any> => {
-    const request : loginRequest = {
-        username : parseInt(form.username),
-        password : form.password,
-    } 
+const submit = (form: any): Promise<any> => {
+    const request: loginRequest = {
+        username: parseInt(form.username),
+        password: form.password,
+    }
     return new Promise((resolve, reject) => {
-       Login(request).then((res:loginResponse) => {
-        localStorage.setItem("token", res.token);
-        return resolve(res)
-       }).catch((e => {
-        return  reject(e)
-       }))
+        Login(request).then((res: loginResponse) => {
+            localStorage.setItem("token", res.token);
+            return resolve(res)
+        }).catch((e => {
+            return reject(e)
+        }))
     })
 }
 
 
-const callBack = (form:any) :any => {
+const callBack = (form: any): any => {
     router.push('/')
 }
 
-const params:FormInterface = {
+const params: FormInterface = {
     inputs,
     submit,
     callBack
 }
 
-const proejctForm = new Form(params)
+const authForm = new Form(params)
 
-export default proejctForm
+export default authForm
