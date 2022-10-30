@@ -116,7 +116,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script >
 import filters from "@/datatables/invoices/filter";
 import AppForm from "@/utils/form/components/Form.vue";
 import { EtaInvoicesList } from "@/repositories/invoice";

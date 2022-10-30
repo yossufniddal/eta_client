@@ -162,7 +162,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script >
 import filters from "@/datatables/invoices/recent_filters";
 import AppForm from "@/utils/form/components/Form.vue";
 import { EtaInvoicesRecentList , EtaInvoicesRecentReject} from "@/repositories/invoice";
