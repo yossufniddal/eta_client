@@ -116,7 +116,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import filters from "@/datatables/invoices/filter";
 import AppForm from "@/utils/form/components/Form.vue";
 import { EtaInvoicesList } from "@/repositories/invoice";
@@ -225,7 +225,7 @@ export default {
         return;
       }
       this.table.loading = true;
-      EtaInvoicesList(this.filters.state).then((res: any) => {
+      EtaInvoicesList(this.filters.state).then((res) => {
         this.table.data = res;
         this.table.loading = false;
       });
@@ -233,19 +233,19 @@ export default {
     reset() {
       this.table.loading = false;
     },
-    upload(items : any[]) {
-      let serials : string = ""
-      items.forEach((item : any) => {
+    upload(items) {
+      let serials = ""
+      items.forEach((item) => {
         serials += `${item.serial},`
       });
-      let state = this.filters?.state as any
+      let state = this.filters?.state 
       const request = {
         serials,
         type:"C",
         store : parseInt(state.store)
       }
       this.table.loading = true
-      PostEtaInvoice(request).then((res:any) => {
+      PostEtaInvoice(request).then((res) => {
         serials = ""
         this.selected =[]
         var parsed = JSON.parse(res)
@@ -276,7 +276,7 @@ export default {
   },
   created() {
     getParamsFromLocation(this.$route.query, this.filters.state);
-    let state = this.filters.state as any
+    let state = this.filters.state 
     let isStoreValid = !(typeof state.store == 'undefined' ||  state.store == null ||  state.store == '')
     let isPostedValid = !(typeof state.posted == 'undefined' ||  state.posted == null ||  state.posted == '')
     if(isStoreValid && isPostedValid){
