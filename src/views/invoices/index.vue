@@ -234,7 +234,7 @@ export default {
       this.table.loading = false;
     },
     upload(items ) {
-      let serials : string = ""
+      let serials  = ""
       items.forEach((item) => {
         serials += `${item.serial},`
       });

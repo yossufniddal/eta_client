@@ -258,7 +258,7 @@ export default {
     },
     rejectAction() {
       this.table.loading = true;
-      let body: object = {
+      let body = {
         status: "rejected",
         reason: this.rejectReason
       }
