@@ -2,7 +2,7 @@ import i18n from '@/i18n';
 import Vue  from 'vue';
 import DateInputComponent from '../components/Date.vue'
 import TextInputComponent from '../components/Text.vue'
-import FileInputComponent from '../components/File.vue'
+
 import SwitchInputComponent from '../components/Switch.vue'
 import SelectInputComponent from '../components/Select.vue'
 import ComboInputComponent from '../components/Combo.vue'
@@ -60,17 +60,7 @@ export const transSerialInput:SelectInputInterface =  {
   icon : 'mdi-format-list-numbered',
   label : 'order_type'
 }
-export const imgInput:TextInputInterface =  {
-  name:"Image",
-  icon: "",
-  generateInputHtml : () =>   Vue.extend(FileInputComponent),
-  rules:[],
-  label : "Img",
-  isImg : true,
-  cols : 6,
-  type : 'file',
-  value:""
-}
+
 
 
 export const storeInput:SelectInputInterface =  {
