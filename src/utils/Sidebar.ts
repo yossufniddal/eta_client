@@ -28,6 +28,11 @@ export default [
       },
       {
         icon: "mdi-account-outline",
+        title: "sidebar.recents",
+        to: `/recents`,
+      },
+      {
+        icon: "mdi-account-outline",
         title: "sidebar.credit",
         to: `/credit`,
       },

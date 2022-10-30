@@ -31,6 +31,16 @@ const routes: Array<RouteConfig> = [
         component: () => import('@/views/invoices/index.vue'),
       },
       {
+        path: "recents",
+        name: "recents",
+        component: () => import('@/views/recents/index.vue'),
+      },
+      {
+        path: "recents/:id",
+        name: "recents-view",
+        component: () => import('@/views/recents/view.vue'),
+      },
+      {
         path: "debit",
         name: "debit",
         component: () => import('@/views/debit/index.vue'),

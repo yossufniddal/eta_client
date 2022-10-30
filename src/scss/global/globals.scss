@@ -5,3 +5,6 @@
 @import url('./utilities.css');
 @import url('./view.css');
 @import url('./ltr.css');
+.theme--dark.v-expansion-panels .v-expansion-panel {
+    background-color: #000;
+  }

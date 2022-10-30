@@ -140,6 +140,18 @@ export const usernameInput:TextInputInterface =  {
 
 
 
+export const rinInput:TextInputInterface =  {
+  name:"rin",
+  icon: "",
+generateInputHtml : () =>   Vue.extend(TextInputComponent),
+
+  label : "Rin",
+  cols : 6,
+  type : 'text',
+  value:""
+}
+
+
 export const passwordInput:TextInputInterface =  {
     name:"password",
   generateInputHtml : () =>   Vue.extend(TextInputComponent),
