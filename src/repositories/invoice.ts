@@ -40,6 +40,28 @@ export const EtaInvoicesRecentList = (query:object) :Promise<post> => {
     })
 }
 
+export const DashboardStoreStats = (query:object) :Promise<post> => {
+    return new Promise((resolve, reject) => {
+        Http.get(`dashboard/store?${serializeQuery(query)}`)
+        .then((d:any) => {
+             resolve(d == null ? [] : d)
+        }).catch((e:any) => {
+            reject(e)
+        })
+    })
+}
+
+export const DashboardStats = () :Promise<post> => {
+    return new Promise((resolve, reject) => {
+        Http.get(`dashboard`)
+        .then((d:any) => {
+             resolve(d == null ? [] : d)
+        }).catch((e:any) => {
+            reject(e)
+        })
+    })
+}
+
 
 export const EtaInvoicesRecentReject = (id:string , payload : object) :Promise<post> => {
     return new Promise((resolve, reject) => {

@@ -19,7 +19,7 @@ export default [
   // },
   {
     icon: "mdi-account-outline",
-    title: "sidebar.invoices",
+    title: "sidebar.transactions",
     children: [
       {
         icon: "mdi-account-outline",

@@ -1,9 +1,28 @@
 .v-application , .bgdarker{
     transition: background .3s ease-in-out;
 }
-
+.theme--dark.v-data-table.v-data-table--fixed-header thead th {
+    background: var(--bgdarker) !important;;
+  }
+.v-expansion-panel-header {
+    background: var(--main-gredient) !important;
+    color: #fff !important;
+  }
+  .theme--dark.v-expansion-panels .v-expansion-panel , .theme--dark.v-card{
+    background: var(--gredient) !important;
+  }
+  .v-data-table {
+    background: var(--gradient) !important;
+  }
 .theme--dark.v-application{
-    background-color: var(--bg) !important;
+    background-color: var(--body) !important;
+}
+.theme--light.v-application {
+    background: var(--bgdarker2);
+}
+.datatable-header .w-full{
+    background: var(--bgdarker) !important;
+    
 }
 tbody tr.v-data-table__mobile-table-row td:first-child {
     background-color: var(--primary) !important;
@@ -63,3 +82,7 @@ tbody tr.v-data-table__mobile-table-row td:first-child {
 td{
     text-align: center !important;
 }
+.sidebar .v-navigation-drawer {
+    background: var(--gradient) !important;
+  }
+ 

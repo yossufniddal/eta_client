@@ -1,23 +1,15 @@
 .view-item {
   padding: 20px 10px;
-  -webkit-transition: -webkit-transform .3s ease-in;
-  transition: -webkit-transform .3s ease-in;
-  transition: transform .3s ease-in;
-  transition: transform .3s ease-in, -webkit-transform .3s ease-in;
+  transition: transform 0.3s ease-in;
   cursor: pointer;
 }
-
 .view-item:not(:last-child) {
   border-bottom: 1px solid var(--secondary);
 }
-
 .view-item h2 {
   color: var(--text-color);
   margin-bottom: 10px;
 }
-
 .view-item:hover {
-  -webkit-transform: scale(1.01);
-          transform: scale(1.01);
-}
-/*# sourceMappingURL=view.css.map */
+  transform: scale(1.01);
+}/*# sourceMappingURL=view.css.map */

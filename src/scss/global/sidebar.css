@@ -2,55 +2,39 @@
   border-radius: 10px 0 0 10px;
   margin-left: 10px;
 }
-
 .sidebar .v-list-item--active {
   background: var(--main-gredient);
   color: #fff !important;
-  -webkit-box-shadow: var(--color-boxshadow);
-          box-shadow: var(--color-boxshadow);
+  box-shadow: var(--color-boxshadow);
 }
-
 .sidebar .v-list-item--active .primary--text {
   color: #fff !important;
 }
-
 .sidebar .v-list-item.sub .v-list-item__action {
   margin: 0 20px;
 }
-
 .sidebar .v-list-item::before {
   border-radius: 10px 0 0 10px;
 }
-
 .sidebar .logo {
   height: 64px;
 }
-
 .sidebar .logo a {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   text-decoration: none;
 }
-
 .sidebar .logo a svg {
   width: 200px;
-  -webkit-transition: var(--primary-transition);
   transition: var(--primary-transition);
   margin-right: 20px;
   fill: var(--text-color);
 }
-
 .sidebar .logo a span {
   font-size: 28px;
   color: #fff;
 }
-
 .sidebar .logo::after {
   content: "";
   border-bottom: 1px solid black;
-}
-/*# sourceMappingURL=sidebar.css.map */
+}/*# sourceMappingURL=sidebar.css.map */

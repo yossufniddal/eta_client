@@ -16,6 +16,7 @@
   
   "show_totals": "عرض المجموع",
   "recent_invoices" : "المشتريات",
+  "select_optional_data" : "يمكنك فلترة البيانات",
   "dashboard" : "لوحة التحكم",
   "search" :"بحث",
   "posted" : "تم التحويل",
@@ -47,11 +48,12 @@
   "select_data" : "من فضلك املأ الحقول المطلوبة لعرض البيانات.",
   "sidebar" : {
     "orders" : "الطلبات",
+    "transactions" : "الحركات",
     "recents" : "فواتير المشتريات",
     "credit" : " حركات دائنة",
     "debit" : " حركات مدينة",
     "orders_un_converted" : "الطلبات الغير محولة",
-    "invoices" : "الفواتير",
+    "invoices" : "فواتير المبيعات",
     "pos_orders" : "طلبات بيع مباشر",
     "orders_converted" :"الطلبات  المحولة"
   },

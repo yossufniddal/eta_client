@@ -1,10 +1,8 @@
 .login_wrapper {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 30% 70%;
-      grid-template-columns: 30% 70%;
+  grid-template-columns: 30% 70%;
   height: 100vh;
-      grid-template-areas: "login img";
+  grid-template-areas: "login img";
 }
 
 .left_side {
@@ -16,46 +14,36 @@
 .header {
   display: block !important;
 }
-
 .header h2 {
   margin-bottom: 20px;
 }
-
 .header svg {
   font-size: 500px;
 }
 
 @media (max-width: 1400px) {
   .login_wrapper {
-    -ms-grid-columns: 40% 60%;
-        grid-template-columns: 40% 60%;
+    grid-template-columns: 40% 60%;
   }
 }
-
 @media (max-width: 1200px) {
   .login_wrapper {
-    -ms-grid-columns: 50% 50%;
-        grid-template-columns: 50% 50%;
+    grid-template-columns: 50% 50%;
   }
 }
-
 @media (max-width: 800px) {
   .login_wrapper {
-    -ms-grid-columns: 60% 40%;
-        grid-template-columns: 60% 40%;
+    grid-template-columns: 60% 40%;
   }
   .left_side {
     background-position: -165px;
   }
 }
-
 @media (max-width: 690px) {
   .login_wrapper {
-    -ms-grid-columns: 100%;
-        grid-template-columns: 100%;
-    -ms-grid-rows: 35% 65%;
-        grid-template-rows: 35% 65%;
-        grid-template-areas: "img" "login";
+    grid-template-columns: 100%;
+    grid-template-rows: 35% 65%;
+    grid-template-areas: "img" "login";
   }
   .left_side {
     background-position: center;
@@ -65,18 +53,14 @@
     padding: 20px;
     border-radius: 20px;
     margin: auto;
-    -webkit-transform: translateY(-100px);
-            transform: translateY(-100px);
-    -webkit-box-shadow: var(--shadow);
-            box-shadow: var(--shadow);
+    transform: translateY(-100px);
+    box-shadow: var(--shadow);
     background-color: var(--bg);
   }
 }
-
 @media (max-width: 400px) {
   .right_side {
-    -webkit-transform: translateY(-120px);
-            transform: translateY(-120px);
+    transform: translateY(-120px);
     max-width: 300px;
   }
   .header h2 {
@@ -92,24 +76,12 @@
     margin: 0 !important;
   }
 }
-
 .right_side {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  -ms-grid-row: 1;
-  -ms-grid-column: 1;
   grid-area: login;
 }
 
@@ -118,8 +90,6 @@
 }
 
 .left_side {
-  -ms-grid-row: 1;
-  -ms-grid-column: 2;
   grid-area: img;
 }
 
@@ -139,5 +109,4 @@
 
 .footer span {
   font-size: 10px;
-}
-/*# sourceMappingURL=login.css.map */
+}/*# sourceMappingURL=login.css.map */

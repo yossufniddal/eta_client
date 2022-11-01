@@ -18,7 +18,7 @@
       >
         <template v-slot:top>
           <div class="datatable-header w-full">
-            <div class="w-full  flex-space bgdarker pa-4">
+            <div class="w-full  flex-space  pa-4">
               <span>
                 <v-icon>mdi-checkbook</v-icon>
                 {{$t("invoices")}}
