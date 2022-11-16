@@ -6,7 +6,7 @@ const Http = Api.getInstance();
 
 export const PostEtaInvoice = (payload: any) :Promise<post> => {
     return new Promise((resolve, reject) => {
-        Http.post('invoices/post' , payload)
+        axios.post('http://localhost:5002/api/invoices/post' , payload)
         .then((d:any) => {
              resolve(d)
         }).catch((e:any) => {

@@ -13,6 +13,7 @@
     <template v-slot:activator="{ on }">
       <v-text-field
         :label="$t(input.label)"
+        :clearable="!input.required"
         prepend-icon="mdi-calendar-blank-outline"
         :append-icon="input.required ? 'mdi-asterisk' : ''"
         readonly

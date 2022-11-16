@@ -23,16 +23,16 @@
           <h2>اجمالي الشهر</h2>
         </v-col>
         <v-col class="scale-hover pointer" cols="12" md="3" sm="6">
-          <count :count="counts[0].totalAmount" :title="'اجمالي مبيعات'" icon="mdi-cash-multiple" :color="'red'" />
+          <count :count="counts[1].totalAmount" :title="'اجمالي مبيعات'" icon="mdi-cash-multiple" :color="'red'" />
         </v-col>
         <v-col class="scale-hover pointer" cols="12" md="3" sm="6">
-          <count :count="counts[0].totalTax" :title="'اجمالي الضريبة'" icon="mdi-cash-multiple" :color="'red'" />
+          <count :count="counts[1].totalTax" :title="'اجمالي الضريبة'" icon="mdi-cash-multiple" :color="'red'" />
         </v-col>
         <v-col class="scale-hover pointer" cols="12" md="3" sm="6">
-          <count :count="counts[1].totalAmount" :title="'اجمالي مشتريات'" icon="mdi-cash-multiple" :color="'red'" />
+          <count :count="counts[0].totalAmount" :title="'اجمالي مشتريات'" icon="mdi-cash-multiple" :color="'red'" />
         </v-col>
         <v-col class="scale-hover pointer" cols="12" md="3" sm="6">
-          <count :count="counts[1].totalTax" :title="'اجمالي ضريبة مشتريات'" icon="mdi-cash-multiple" :color="'red'" />
+          <count :count="counts[0].totalTax" :title="'اجمالي ضريبة مشتريات'" icon="mdi-cash-multiple" :color="'red'" />
         </v-col>
       </v-row>
       <v-row justify="center">

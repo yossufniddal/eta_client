@@ -1,5 +1,6 @@
 export  type snackBarModel = {
     Active: boolean,
     Title: string,
-    Msg: string
+    Msg: string,
+    ClassName: string
 }

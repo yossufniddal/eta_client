@@ -1,67 +1,25 @@
 <template>
   <div>
     <v-container>
-      <v-data-table
-        v-model="selected"
-        :headers="table.headers"
-        :items="table.data"
-        :loading="table.loading"
-        dense
-        :page.sync="page"
-        :items-per-page="itemsPerPage"
-        @page-count="pageCount = $event"
-        item-key="serial"
-        show-select
-        fixed-header
-        height="600px"
-        class="elevation-4"
-      >
+      <v-data-table v-model="selected" :headers="table.headers" :items="table.data" :loading="table.loading" dense
+        :page.sync="page" :items-per-page="itemsPerPage" @page-count="pageCount = $event" item-key="serial" show-select
+        fixed-header height="600px" class="elevation-4">
         <template v-slot:top>
           <div class="datatable-header w-full">
             <div class="w-full  flex-space  pa-4">
               <span>
-                <v-icon>mdi-checkbook</v-icon>
-                {{$t("invoices")}}
+                <v-icon @click.prevent="checkGoAppHealth">mdi-checkbook</v-icon>
+                {{ $t("invoices") }}
               </span>
-              <v-menu
-                v-if="filters.state.posted != 1"
-                bottom
-                origin="center center"
-                transition="scale-transition"
-              >
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    :loading="table.loading"
-                    class="gr-bg"
-                    v-bind="attrs"
-                    v-on="on"
-                  >
-                    <v-icon class="mx-2">mdi-dots-horizontal-circle-outline</v-icon>
-                    {{$t('actions')}}
-                  </v-btn>
-                </template>
 
-                <v-list>
-                  <v-list-item>
-                    <v-list-item-title class="pointer" @click.prevent="upload(selected)">
-                      <v-icon class="mx-2">mdi-upload-outline</v-icon>
-                      {{$t('upload')}}
-                      
-                    </v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-menu>
             </div>
             <div class="pa-4">
-              <v-expansion-panels
-                class="gr-bg "
-                v-model="filtersOpened"
-              >
+              <v-expansion-panels class="gr-bg " v-model="filtersOpened">
                 <v-expansion-panel>
                   <v-expansion-panel-header>
                     <span>
                       <v-icon>mdi-filter-multiple-outline</v-icon>
-                      {{$t('select_data')}}
+                      {{ $t('select_data') }}
                     </span>
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
@@ -71,42 +29,40 @@
                 </v-expansion-panel>
               </v-expansion-panels>
             </div>
-            <div
-              class="w-full mb-4 pa-4 flex-space"
-              v-if="table.data.length > 0"
-            >
+            <div class="w-full mb-4 pa-4 flex-space" v-if="table.data.length > 0">
               <span>{{ $tc("table_page", from) }} {{ to }}
                 {{ $tc("table_count", table.data.length) }}</span>
 
-              <v-pagination
-                v-model="page"
-                :length="pageCount"
-                :total-visible="7"
-              ></v-pagination>
+              <v-pagination v-model="page" :length="pageCount" :total-visible="7"></v-pagination>
             </div>
+            <div class="w-full mb-4 pa-4 flex-space" v-if="filters.state.posted != 1 && showUpload">
+
+              <v-btn :loading="table.loading" class="app-btn" v-bind="attrs" @click.prevent="upload(selected)" v-on="on">
+                <v-icon class="mx-2">mdi-upload-outline</v-icon>
+                {{ $t('upload_whole') }}
+              </v-btn>
+
+            </div>
+
           </div>
         </template>
         <template v-slot:[`item.totalTax`]="{ item }">
-          <span>{{currency(item.totalTax)}}</span>
+          <span>{{ currency(item.totalTax) }}</span>
         </template>
         <template v-slot:[`item.netAmount`]="{ item }">
-          <td>{{currency(item.netAmount)}}</td>
+          <td>{{ currency(item.netAmount) }}</td>
         </template>
         <template v-slot:[`item.totalAmount`]="{ item }">
-          <td>{{currency(item.totalAmount)}}</td>
+          <td>{{ currency(item.totalAmount) }}</td>
         </template>
         <template v-slot:[`item.dateTimeIssued`]="{ item }">
-          <td>{{convertDate(item.dateTimeIssued)}}</td>
+          <td>{{ convertDate(item.dateTimeIssued) }}</td>
         </template>
-        <template v-slot:[`item.actions`]="{ item }" v-if="filters.state.posted != 1">
+        <template v-slot:[`item.actions`]="{ item }" v-if="filters.state.posted != 1 && showUpload">
           <td class="pa-4">
-            <v-btn
-              :loading="table.loading"
-              @click.prevent="upload([item])"
-              dark
-            >
+            <v-btn class="app-btn" :loading="table.loading" @click.prevent="upload([item])" dark>
               <v-icon class="mr-3 ml-3">mdi-upload-outline</v-icon>
-              {{$t('upload')}}
+              {{ $t('upload') }}
             </v-btn>
 
           </td>
@@ -121,7 +77,8 @@ import filters from "@/datatables/invoices/filter";
 import AppForm from "@/utils/form/components/Form.vue";
 import { EtaInvoicesList } from "@/repositories/invoice";
 import { PostEtaInvoice } from "@/repositories/invoice"
-import {openSnack} from '@/utils/snack/snack'
+import axios from 'axios'
+import { openSnack } from '@/utils/snack/snack'
 import {
   addParamsToLocation,
   clearNullValues,
@@ -133,6 +90,7 @@ export default {
   data() {
     return {
       filters,
+      showUpload: true,
       singleSelect: false,
       selected: [],
       filtersOpened: true,
@@ -206,12 +164,12 @@ export default {
       handler(newValue) {
         addParamsToLocation(clearNullValues(newValue), this.$route.path);
         this.filters.valid = this.filters.validate();
-        let isStoreValid = !(typeof newValue.store == 'undefined' ||  newValue.store == null ||  newValue.store == '')
-        let isPostedValid = !(typeof newValue.posted == 'undefined' ||  newValue.posted == null ||  newValue.posted == '')
-        if(isStoreValid && isPostedValid){
+        let isStoreValid = !(typeof newValue.store == 'undefined' || newValue.store == null || newValue.store == '')
+        let isPostedValid = !(typeof newValue.posted == 'undefined' || newValue.posted == null || newValue.posted == '')
+        if (isStoreValid && isPostedValid) {
           this.getData();
         }
-      
+
       },
       deep: true,
     },
@@ -233,26 +191,47 @@ export default {
     reset() {
       this.table.loading = false;
     },
-    upload(items ) {
-      let serials  = ""
+    async checkGoAppHealth() {
+      await axios.get('http://localhost:5002/health').then((res) => {
+        console.log('health')
+        this.showUpload = true
+      }).catch((e) => {
+        console.log(e)
+        console.log('this.showUpload')
+        console.log(this.showUpload)
+
+        this.showUpload = false
+      })
+    },
+    upload(items) {
+      if (items.length ==0){
+        openSnack(this.$t("failed"), this.$t(`select_some_data`) , "failed")
+        return
+      }
+      let serials = ""
       items.forEach((item) => {
         serials += `${item.serial},`
       });
-      let state = this.filters?.state 
+      let state = this.filters?.state
       const request = {
         serials,
-        type:"I",
-        store : parseInt(state.store)
+        type: "I",
+        store: parseInt(state.store)
       }
       this.table.loading = true
       PostEtaInvoice(request).then((res) => {
         serials = ""
-        this.selected =[]
+        this.selected = []
         var parsed = JSON.parse(res)
-        const sucessMessage = `${parsed.acceptedDocuments.length} document uploaded successfully `
-        const errorMessage =  `${parsed.rejectedDocuments.length} failed to upload`
-        let title = "" 
-        let msg = "" 
+        const sucessMessage = `${parsed.acceptedDocuments.length} success_upload `
+        const errorMessage = `${parsed.rejectedDocuments.length} failed_upload`
+        let title = ""
+        let msg = ""
+
+        console.log("parsed")
+        console.log(parsed)
+        console.log(parsed.rejectedDocuments)
+        
         if (parsed.acceptedDocuments.length > 0) {
           title = "success"
           msg += sucessMessage
@@ -261,11 +240,11 @@ export default {
           title = "failed"
           msg += errorMessage
         }
-        openSnack(title ,msg)
+        openSnack(title, msg , title)
 
         this.getData()
       }).catch(e => {
-          openSnack("failed" , `failed to upload the whole request`)
+        openSnack(this.$t("failed"), this.$t('failed_to_upload_whole') , "failed")
 
         this.getData()
       })
@@ -275,11 +254,13 @@ export default {
     AppForm,
   },
   created() {
+    this.checkGoAppHealth()
+
     getParamsFromLocation(this.$route.query, this.filters.state);
     let state = this.filters.state
-    let isStoreValid = !(typeof state.store == 'undefined' ||  state.store == null ||  state.store == '')
-    let isPostedValid = !(typeof state.posted == 'undefined' ||  state.posted == null ||  state.posted == '')
-    if(isStoreValid && isPostedValid){
+    let isStoreValid = !(typeof state.store == 'undefined' || state.store == null || state.store == '')
+    let isPostedValid = !(typeof state.posted == 'undefined' || state.posted == null || state.posted == '')
+    if (isStoreValid && isPostedValid) {
       this.getData();
     }
   },

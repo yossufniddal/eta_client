@@ -11,6 +11,7 @@ export const state: UiState = {
         Active : false,
         Title : "",
         Msg : "",
+        ClassName : ""
     }
 };
 
