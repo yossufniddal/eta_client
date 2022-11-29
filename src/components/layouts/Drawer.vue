@@ -67,7 +67,7 @@
     </v-navigation-drawer>
     <v-app-bar
       app
-      color="bgdarker"
+      class="gradient"
     >
     
         <router-link to="/"> <img  v-show="!drawer" src="../../assets/img/icon.png"  class="w-40 transition"/></router-link>

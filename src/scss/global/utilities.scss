@@ -16,6 +16,9 @@
 .bg-primary{
     background-color: var(--primary);
 }
+.gradient{
+    background: var(--gradient) !important;
+}
 .bg-gredient{
     background: var(--main-gredient);
 }
@@ -39,6 +42,14 @@
 .app-btn{
     width: 100%;
     background:var(--main-gredient);
+
+    &.success{
+        background:var(--success) !important;
+    }
+    &.danger{
+        background:var(--error) !important;
+    }
+
 }
 .app-error{
     background-color: var(--error);

@@ -196,10 +196,6 @@ export default {
         console.log('health')
         this.showUpload = true
       }).catch((e) => {
-        console.log(e)
-        console.log('this.showUpload')
-        console.log(this.showUpload)
-
         this.showUpload = false
       })
     },
@@ -223,15 +219,10 @@ export default {
         serials = ""
         this.selected = []
         var parsed = JSON.parse(res)
-        const sucessMessage = `${parsed.acceptedDocuments.length} success_upload `
-        const errorMessage = `${parsed.rejectedDocuments.length} failed_upload`
+        const sucessMessage = `${parsed.acceptedDocuments.length} فاتورة تم رفعها بنجاح `
+        const errorMessage = `${parsed.rejectedDocuments.length} فاتورة فشل رفعها`
         let title = ""
         let msg = ""
-
-        console.log("parsed")
-        console.log(parsed)
-        console.log(parsed.rejectedDocuments)
-        
         if (parsed.acceptedDocuments.length > 0) {
           title = "success"
           msg += sucessMessage

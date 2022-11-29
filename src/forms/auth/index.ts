@@ -1,3 +1,4 @@
+import store  from '@/store';
 import { loginRequest, loginResponse } from './../../models/user';
 import { Login } from './../../repositories/user';
 import { FormInterface } from './../../utils/form/interface';
@@ -24,6 +25,8 @@ const submit = (form: any): Promise<any> => {
     return new Promise((resolve, reject) => {
         Login(request).then((res: loginResponse) => {
             localStorage.setItem("token", res.token);
+
+            store.commit("user/loggedIn" , res.user)
             return resolve(res)
         }).catch((e => {
             return reject(e)

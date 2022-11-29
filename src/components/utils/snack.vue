@@ -1,7 +1,7 @@
 <template>
     <div class="snackbar " :class="snack.Active ? `active ${snack.ClassName}` : `${snack.ClassName}`">
-        <h2>{{snack.Title}}</h2>
-        <p>{{snack.Msg}}</p>
+        <h2>{{$t(snack.Title)}}</h2>
+        <p>{{$t(snack.Msg)}}</p>
     </div>
 </template>
 

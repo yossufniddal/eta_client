@@ -8,7 +8,7 @@ export const PostEtaInvoice = (payload: any) :Promise<post> => {
     return new Promise((resolve, reject) => {
         axios.post('http://localhost:5002/api/invoices/post' , payload)
         .then((d:any) => {
-             resolve(d)
+             resolve(d.data)
         }).catch((e:any) => {
             reject(e)
         })

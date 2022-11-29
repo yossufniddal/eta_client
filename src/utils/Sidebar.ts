@@ -40,6 +40,11 @@ export default [
         icon: "mdi-account-outline",
         title: "sidebar.debit",
         to: `/debit`,
+      },
+      {
+        icon: "mdi-account-outline",
+        title: "sidebar.invoices2",
+        to: `/invoices/local`,
       }
     ]
   },

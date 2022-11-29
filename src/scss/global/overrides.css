@@ -12,7 +12,12 @@
 }
 
 .theme--dark.v-expansion-panels .v-expansion-panel, .theme--dark.v-card {
-  background: var(--gredient) !important;
+  background: var(--gradient) !important;
+}
+
+.v-card__title {
+  background: var(--main-gredient) !important;
+  margin-bottom: 20px;
 }
 
 .v-data-table {
@@ -101,4 +106,8 @@ td {
 
 .sidebar .v-navigation-drawer {
   background: var(--gradient) !important;
+}
+
+.theme--dark.v-list {
+  background: var(--bgdarker) !important;
 }/*# sourceMappingURL=overrides.css.map */

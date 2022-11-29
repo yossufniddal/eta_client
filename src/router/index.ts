@@ -50,6 +50,17 @@ const routes: Array<RouteConfig> = [
         name: "credit",
         component: () => import('@/views/credit/index.vue'),
       },
+      // lcoal invoices
+      {
+        path: "invoices/local",
+        name: "invoices-local",
+        component: () => import('@/views/invoices/local/index.vue'),
+      },
+      {
+        path: "invoices/local/edit",
+        name: "invoices-local-edit",
+        component: () => import('@/views/invoices/local/edit.vue'),
+      },
     ]
   },
   // {

@@ -148,3 +148,5 @@ export const addParamsToLocation = (params:any , path:string) => {
     const formattedDate = d.toUTCString()
     return formattedDate.substring(0 , formattedDate.length-3)
   }
+
+  

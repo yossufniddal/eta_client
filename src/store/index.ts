@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex, { StoreOptions } from "vuex";
 import { RootState } from "./types";
 import { ui } from "./ui/index";
+import { user } from "./user/index";
 
 Vue.use(Vuex);
 
@@ -11,6 +12,7 @@ const store: StoreOptions<RootState> = {
   },
   modules: {
     ui,
+    user,
   },
 };
 
