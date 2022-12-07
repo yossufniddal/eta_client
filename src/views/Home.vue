@@ -12,10 +12,10 @@
           <count :count="counts[3].totalTax" :title="'اجمالي الضريبة'" icon="mdi-cash-multiple" :color="'red'" />
         </v-col>
         <v-col class="scale-hover pointer" cols="12" md="3" sm="6">
-          <count :count="counts[0].totalAmount" :title="'اجمالي مشتريات'" icon="mdi-cash-multiple" :color="'red'" />
+          <count :count="counts[1].totalAmount" :title="'اجمالي مشتريات'" icon="mdi-cash-multiple" :color="'red'" />
         </v-col>
         <v-col class="scale-hover pointer" cols="12" md="3" sm="6">
-          <count :count="counts[0].totalTax" :title="'اجمالي ضريبة مشتريات'" icon="mdi-cash-multiple" :color="'red'" />
+          <count :count="counts[1].totalTax" :title="'اجمالي ضريبة مشتريات'" icon="mdi-cash-multiple" :color="'red'" />
         </v-col>
       </v-row>
       <v-row justify="center">
@@ -29,10 +29,10 @@
           <count :count="counts[2].totalTax" :title="'اجمالي الضريبة'" icon="mdi-cash-multiple" :color="'red'" />
         </v-col>
         <v-col class="scale-hover pointer" cols="12" md="3" sm="6">
-          <count :count="counts[1].totalAmount" :title="'اجمالي مشتريات'" icon="mdi-cash-multiple" :color="'red'" />
+          <count :count="counts[0].totalAmount" :title="'اجمالي مشتريات'" icon="mdi-cash-multiple" :color="'red'" />
         </v-col>
         <v-col class="scale-hover pointer" cols="12" md="3" sm="6">
-          <count :count="counts[1].totalTax" :title="'اجمالي ضريبة مشتريات'" icon="mdi-cash-multiple" :color="'red'" />
+          <count :count="counts[0].totalTax" :title="'اجمالي ضريبة مشتريات'" icon="mdi-cash-multiple" :color="'red'" />
         </v-col>
       </v-row>
       <v-row justify="center">
@@ -88,13 +88,33 @@
             <span>{{currency(item.totalTax)}}</span>
           </template>
           <template v-slot:[`item.netAmount`]="{ item }">
-            <td>{{currency(item.totalAmount - item.totalTax)}}</td>
+            <td>{{currency(item.netAmount)}}</td>
           </template>
           <template v-slot:[`item.totalAmount`]="{ item }">
             <td>{{currency(item.totalAmount)}}</td>
           </template>
           <template v-slot:[`item.dateTimeIssued`]="{ item }">
             <td>{{convertDate(item.dateTimeIssued)}}</td>
+          </template>
+
+          <template slot="body.append">
+            <tr class="text-center text-white md-hidden bg-gredient">
+              <th
+                class="text-center"
+                v-for="(header, index) in table.headers"
+                :key="index"
+              >
+                <span v-if="index == 0 && !header.total">
+                  {{ $t("totals") }}
+                </span>
+                <span v-else-if="header.value == 'orders'">
+                  {{ table.totals[header.value] }}
+                 </span>
+                <span v-else>
+                 {{ currency(table.totals[header.value]) }}
+                </span>
+              </th>
+            </tr>
           </template>
           
         </v-data-table>
@@ -144,6 +164,7 @@ export default Vue.extend({
       table: {
         loading: false,
         data: [],
+        totals:null,
         headers: [
           {
             text: this.$t("store"),
@@ -169,6 +190,12 @@ export default Vue.extend({
             align: "center",
             sortable: true,
             value: "totalAmount",
+          },
+          {
+            text: this.$t("orders"),
+            align: "center",
+            sortable: true,
+            value: "orders",
           }
         ],
       },
@@ -226,7 +253,8 @@ export default Vue.extend({
       this.table.loading = true;
 
       DashboardStoreStats(this.filters.state).then((res) => {
-        this.table.data = res;
+        this.table.data = res.data;
+        this.table.totals = res.totals;
         this.table.loading = false;
       });
     },

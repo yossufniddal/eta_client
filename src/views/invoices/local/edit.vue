@@ -42,11 +42,9 @@
 
             </v-col>
             <v-col class="text-center" :cols="6">
-              <h2>{{this.serial}}</h2>
               <v-text-field ref="qnt" outlined dense prepend-icon="mdi-numeric" v-model="form.qnt"
                 :disabled="isDisabled" type="number" :rules="qntRules" @keyup.enter="submit" :label="$t(`inputs.qnt`)">
               </v-text-field>
-
             </v-col>
 
             <v-col cols="12">
