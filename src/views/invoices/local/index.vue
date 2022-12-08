@@ -43,27 +43,7 @@
 
           </div>
         </template>
-        <!-- <template v-slot:[`item.totalTax`]="{ item }">
-          <span>{{ currency(item.totalTax) }}</span>
-        </template>
-        <template v-slot:[`item.netAmount`]="{ item }">
-          <td>{{ currency(item.netAmount) }}</td>
-        </template>
-        <template v-slot:[`item.totalAmount`]="{ item }">
-          <td>{{ currency(item.totalAmount) }}</td>
-        </template>
-        <template v-slot:[`item.dateTimeIssued`]="{ item }">
-          <td>{{ convertDate(item.dateTimeIssued) }}</td>
-        </template>
-        <template v-slot:[`item.actions`]="{ item }" v-if="filters.state.posted != 1 && showUpload">
-          <td class="pa-4">
-            <v-btn class="app-btn" :loading="table.loading" @click.prevent="upload([item])" dark>
-              <v-icon class="mr-3 ml-3">mdi-upload-outline</v-icon>
-              {{ $t('upload') }}
-            </v-btn>
-
-          </td>
-        </template> -->
+       
         <template v-slot:[`item.Reserved`]="{ item }">
           <v-chip
             class="ma-2"
@@ -219,12 +199,12 @@ export default {
             sortable: true,
             value: "DocDate",
           },
-          {
-            text: this.$t("columns.reserved"),
-            align: "center",
-            sortable: true,
-            value: "Reserved",
-          },
+          // {
+          //   text: this.$t("columns.reserved"),
+          //   align: "center",
+          //   sortable: true,
+          //   value: "Reserved",
+          // },
           {
             text: this.$t("columns.actions"),
             align: "center",

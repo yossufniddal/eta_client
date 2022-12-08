@@ -64,11 +64,14 @@
     "debit" : " حركات مدينة",
     "orders_un_converted" : "الطلبات الغير محولة",
     "invoices" : "فواتير المبيعات",
+    "invoices2" : "فواتير المبيعات",
     "pos_orders" : "طلبات بيع مباشر",
     "orders_converted" :"الطلبات  المحولة"
   },
   "columns": {
     "code": "الكود",
+    "tax": "الضريبة",
+    "subtotal" : "الاجمالي الفرعي",
     "SalesNo" : "امر بيع",
     "storeName" : "اسم المخزن",
     "employee": "الموظف",

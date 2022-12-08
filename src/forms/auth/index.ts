@@ -25,6 +25,8 @@ const submit = (form: any): Promise<any> => {
     return new Promise((resolve, reject) => {
         Login(request).then((res: loginResponse) => {
             localStorage.setItem("token", res.token);
+            localStorage.setItem("empCode", res.user.emp_code.toString());
+            localStorage.setItem("empName", res.user.emp_name);
 
             store.commit("user/loggedIn" , res.user)
             return resolve(res)

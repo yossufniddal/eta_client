@@ -6,25 +6,21 @@
         <div class="w-full text-center">
           <h2 class="block mb-4">{{ $t('table.internlID') }} :{{ $route.query.no }} </h2>
         </div>
-        <!-- <div class="right">
+        <div class="right">
           <p class="block">{{ $t('columns.customer') }} :{{ $route.query.customer_name }} / {{
-              this.$route.query.customer_code
+              $route.query.customer_code
           }} </p>
-          <p class="block">{{ $t('columns.employee') }} : {{ user.emp_code }} / {{ user.emp_name }}</p>
-        </div> -->
+          <p class="block">{{ $t('columns.employee') }} : {{ empCode}} / {{ empName }}</p>
+        </div>
         <div class="middle">
           <p class="block">{{ $t('store') }} : {{ $route.query.store_name }}</p>
           <p class="block">{{ $t('columns.date') }} : {{ docDate }}</p>
         </div>
-        <div
+        <!-- <div
           class="left"
         >
-          <v-card>
-            <v-card-title class="block">
-              <p class="block text-whitte">{{$t('subtotal')}} : {{currency(120)}} </p>
-            </v-card-title>
-          </v-card>
-        </div>
+         
+        </div> -->
       </v-card-title>
       <v-card-text>
         <v-form class="pt-5" ref="form" v-model="valid" lazy-validation>
@@ -57,7 +53,7 @@
 
             </v-col>
             <v-col cols="8">
-              <v-btn :loading="insertLoading" :disabled="!valid && errors.length == 0" @click="editItem(item)"
+              <v-btn :loading="insertLoading" :disabled="false" @click="save"
                 class="app-btn success">
                 <v-icon small class="mr-2">
                   mdi-check-all
@@ -81,6 +77,7 @@
         </v-form>
         <v-data-table :headers="table.headers" :items="table.data" :loading="table.loading" :items-per-page="100"
           :search="table.search" fixed-header height="400px" sort-by="Name" class="elevation-1 mt-5">
+         
           <!-- <template v-slot:top>
             <div class="spacing-playground px-6">
               <v-row>
@@ -130,6 +127,23 @@
             <span>{{ $t('table.no_data') }}</span>
           </template>
 
+          <template v-slot:body.append v-if="table.data.length">
+            <tr>
+              <td colspan="5"></td>
+              <td colspan="1" class="text-right ">
+                
+                <span class="totals-title">{{$t('columns.subtotal')}} : </span><span  class="totals-amount"> {{currency(table.totals.SubTotal)}}</span><br />
+                <span class="totals-title">{{$t('columns.tax')}} : </span><span  class="totals-amount"> {{currency(table.totals.Tax)}}</span><br />
+                <span class="totals-title">{{$t('columns.total')}} : </span><span  class="totals-amount"> {{currency(table.totals.Total)}}</span><br />
+              
+                <!-- <v-card>
+                  <v-card-text class="">
+                  </v-card-text>
+                </v-card> -->
+              </td>
+            </tr>
+          </template>
+
         </v-data-table>
       </v-card-text>
     </v-card>
@@ -143,7 +157,7 @@
 
 <script>
 import { print } from '@/utils/print.js'
-import { ItemsList, LocalInvoiceCreate, LocalInvoiceItemCreate, LocalInvoiceItemsList, LocalInvoiceUpdate, LocalInvoiceDelete } from '@/repositories/localInvoice.ts';
+import { ItemsList, LocalInvoiceCreate, LocalInvoiceItemCreate, LocalInvoiceClose, LocalInvoiceItemsList, LocalInvoiceUpdate, LocalInvoiceDelete } from '@/repositories/localInvoice.ts';
 import { addParamsToLocation, currency } from '@/utils/helpers.ts'
 import Vue from 'vue'
 import invoice from '@/components/invoice'
@@ -189,31 +203,38 @@ export default {
       table: {
         loading: false,
         data: [],
+        totals:{
+          SubTotal: 0,
+          Tax: 0,
+          Total: 0
+        },
         headers: [
-          { text: this.$t('columns.code'), value: 'BarCode', align: 'center' },
-          { text: this.$t('columns.name'), value: 'ItemName', align: 'center' },
-          { text: this.$t('columns.qnt'), value: 'Qnt', align: 'center' },
-          { text: this.$t('columns.price'), value: 'ItemPrice', align: 'center' },
-          { text: this.$t('columns.total'), value: 'ItemTotal', align: 'center' },
-          { text: this.$t('columns.delete'), value: 'delete', align: 'center' }
+          { text: this.$t('columns.code'), value: 'BarCode', align: 'center' , width : "10%"},
+          { text: this.$t('columns.name'), value: 'ItemName', align: 'center' , width : "30%"},
+          { text: this.$t('columns.qnt'), value: 'Qnt', align: 'center' , width : "5%"},
+          { text: this.$t('columns.price'), value: 'ItemPrice', align: 'center' , width : "15%"},
+          { text: this.$t('columns.total'), value: 'ItemTotal', align: 'center' , width : "15%"},
+          { text: this.$t('columns.delete'), value: 'delete', align: 'center' , width : "25%"}
         ],
       },
     }
   },
   computed: {
-    ...mapGetters({
-      // totals: 'order/totals',
-      user: "user/user"
-    }),
+    empCode(){
+      return  localStorage.getItem("empCode");
+    },
+    empName(){
+      return  localStorage.getItem("empName");
+    },
     headers() {
 
       return [
-        { text: this.$t('columns.code'), value: 'BarCode', align: 'center' },
-        { text: this.$t('columns.name'), value: 'ItemName', align: 'center' },
-        { text: this.$t('columns.qnt'), value: 'Qnt', align: 'center' },
-        { text: this.$t('columns.price'), value: 'ItemPrice', align: 'center' },
-        { text: this.$t('columns.total'), value: 'ItemTotal', align: 'center' },
-        { text: this.$t('columns.delete'), value: 'delete', align: 'center' }
+        { text: this.$t('columns.code'), value: 'BarCode', align: 'center' , width : "10%"},
+        { text: this.$t('columns.name'), value: 'ItemName', align: 'center' , width : "30%"},
+        { text: this.$t('columns.qnt'), value: 'Qnt', align: 'center' , width : "5%"},
+        { text: this.$t('columns.price'), value: 'ItemPrice', align: 'center' , width : "15%"},
+        { text: this.$t('columns.total'), value: 'ItemTotal', align: 'center' , width : "15%"},
+        { text: this.$t('columns.delete'), value: 'delete', align: 'center', width : "25%" }
 
       ]
     }
@@ -234,7 +255,7 @@ export default {
     updateQnt(item) {
       const payload = {
         Qnt: parseFloat(this.newQnt),
-        Serial: this.serial
+        Serial: item.Serial
       }
       LocalInvoiceUpdate(payload).then((res) => {
         this.getInvoiceItems()
@@ -249,6 +270,9 @@ export default {
     },
     save() {
       const Serial = parseInt(this.$route.query.serial) || this.serial
+      LocalInvoiceClose(Serial).then(res => {
+        this.$router.push({name : 'invoices-local'})
+      })
       const DocNo = parseInt(this.$route.query.no) || parseInt(this.docNo)
     },
     async discard() {
@@ -271,7 +295,7 @@ export default {
         DocNo: parseInt(query.no),
         StoreCode: parseInt(query.store_code),
         AccountSerial: parseInt(query.customer_code),
-        EmpCode: parseInt(this.user.emp_code),
+        EmpCode: parseInt(this.empCode),
       }
       await LocalInvoiceCreate(payload).then(res => {
         let query = { ...this.$route.query }
@@ -310,7 +334,8 @@ export default {
     getInvoiceItems() {
       this.table.loading = true
       LocalInvoiceItemsList(this.serial).then(res => {
-        this.table.data = res
+        this.table.data = res.Items
+        this.table.totals = res.Totals
         this.table.loading = false
       })
     },
@@ -376,6 +401,8 @@ export default {
   cursor: not-allowed;
 }
 
+
+
 .print-btn {
   z-index: 101;
 }
@@ -383,4 +410,14 @@ export default {
 .invoice-header {
   background: var(--bgdarker3) !important;
 }
+
+.th.text-left {
+  text-align: center !important;
+ width: 300px;
+}
+.totals-title , .totals-amount{
+  font-size: 20px;
+  font-weight: bold;
+}
 </style>
+

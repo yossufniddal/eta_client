@@ -96,6 +96,17 @@ export const ItemsList = (store : any) :Promise<post> => {
 }
 
 
+export const LocalInvoiceClose = (serial : any) :Promise<post> => {
+    return new Promise((resolve, reject) => {
+        Http.put(`invoices/local/close/${serial}`)
+        .then((d:any) => {
+             resolve(d == null ? [] : d)
+        }).catch((e:any) => {
+            reject(e)
+        })
+    })
+}
+
 export const CustomersList = () :Promise<post> => {
     return new Promise((resolve, reject) => {
         Http.get('/accounts?Type=1')

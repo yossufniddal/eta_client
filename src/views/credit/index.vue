@@ -33,7 +33,6 @@
                   <v-btn
                     :loading="table.loading"
                     class="gr-bg"
-                    v-bind="attrs"
                     v-on="on"
                   >
                     <v-icon class="mx-2">mdi-dots-horizontal-circle-outline</v-icon>
