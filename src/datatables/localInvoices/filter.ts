@@ -5,10 +5,10 @@ import Input from '@/utils/form/inputs/Input';
 
 
 const inputs: Input[] = [
-  // new Input(finsihedInput),
-  // new Input(deltedInput),
   new Input(fromDateInput),
-  new Input(toDateInput)
+  new Input(toDateInput),
+  new Input(finsihedInput),
+  // new Input(deltedInput),
 ]
 
 const params :FormInterface = {

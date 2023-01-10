@@ -18,7 +18,7 @@ export const LocalInvoiceItemsList = (serial: any) :Promise<post> => {
     return new Promise((resolve, reject) => {
         Http.get(`/invoices/local/items/${serial}` , )
         .then((d:any) => {
-             resolve(d == null ? [] : d)
+             resolve(d)
         }).catch((e:any) => {
             reject(e)
         })

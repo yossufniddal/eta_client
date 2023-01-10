@@ -93,6 +93,7 @@ export const finsihedInput: SwitchInputInterface = {
   generateInputHtml: () => Vue.extend(SwitchInputComponent),
   cols: 6,
   type: "switch",
+  initial:false,
   value: false,
 };
 

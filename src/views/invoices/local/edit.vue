@@ -53,7 +53,7 @@
 
             </v-col>
             <v-col cols="8">
-              <v-btn :loading="insertLoading" :disabled="false" @click="save"
+              <v-btn :loading="insertLoading" :disabled="table.data.length == 0" @click="save"
                 class="app-btn success">
                 <v-icon small class="mr-2">
                   mdi-check-all
@@ -63,7 +63,7 @@
 
             </v-col>
             <v-col cols="4">
-              <v-btn :loading="insertLoading" :disabled="!valid && errors.length == 0" @click="editItem(item)"
+              <v-btn :loading="insertLoading"  @click="discard"
                 class="app-btn danger">
                 <v-icon small class="mr-2">
                   mdi-close-box-outline
@@ -276,10 +276,7 @@ export default {
       const DocNo = parseInt(this.$route.query.no) || parseInt(this.docNo)
     },
     async discard() {
-      const unreservePayload = {
-        Serial: this.serial,
-        Reserved: false
-      }
+      this.$router.push({name : 'invoices-local'})
 
     },
     itemChanged() {
@@ -334,9 +331,19 @@ export default {
     getInvoiceItems() {
       this.table.loading = true
       LocalInvoiceItemsList(this.serial).then(res => {
-        this.table.data = res.Items
-        this.table.totals = res.Totals
-        this.table.loading = false
+
+        if(res.Items == null){
+          this.table.loading = false
+          this.table.data = []
+          console.log("null items")
+
+          
+        } else {
+
+          this.table.data = res.Items
+          this.table.totals = res.Totals
+          this.table.loading = false
+        }
       })
     },
     
